@@ -15,7 +15,7 @@ h3,
 p,
 button,
 span {
-    font-family: 'Inter', serif;
+    font-family: 'Inter';
 }
 
 ::placeholder {
@@ -177,7 +177,7 @@ hr {
 
 .error {
     color: rgb(255, 108, 108);
-    font-family: Inter, san-serif, sans-serif;
+    font-family: Inter, san-serif;
     font-size: 12px;
     line-height: 16px;
     font-weight: 400;
@@ -199,7 +199,7 @@ a {
 
 .remember-me-label {
     color: rgba(0, 0, 0, 0.62);
-    font-family: Inter, san-serif, sans-serif;
+    font-family: Inter, san-serif;
     font-size: 14px;
     font-weight: 400;
     margin-left: 6px;
