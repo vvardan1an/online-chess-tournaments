@@ -1,6 +1,5 @@
 package am.itspace.onlinechesstournaments.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
