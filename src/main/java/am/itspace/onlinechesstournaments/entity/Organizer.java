@@ -21,8 +21,6 @@ public class Organizer {
     private String surname;
     private String nationality;
     private int age;
-    @Column(unique = true)
     private String email;
     private String password;
-
 }

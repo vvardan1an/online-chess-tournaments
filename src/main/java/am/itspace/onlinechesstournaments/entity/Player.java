@@ -15,7 +15,6 @@ import java.util.List;
 @Entity
 @Table(name = "player")
 public class Player {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,17 +26,13 @@ public class Player {
     private int nationalRating;
     @Enumerated(EnumType.STRING)
     private Title title;
-    private String playerPic;
-    @Column(unique = true)
+    private String picture;
     private String email;
     private String password;
-
     @ManyToMany
     @JoinTable(
-            name = "play_tour",
+            name = "player_tournament",
             joinColumns = @JoinColumn(name = "tournament_id"),
             inverseJoinColumns = @JoinColumn(name = "player_id"))
     List<Tournament> playerList;
-
-
 }

@@ -17,7 +17,6 @@ import java.util.List;
 @Entity
 @Table(name = "tournament")
 public class Tournament {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -33,17 +32,15 @@ public class Tournament {
     private int maxRatingRestriction;
     private int participantMinCount;
     private int participantMaxCount;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date startDate;
     private String description;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date deadLine;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private Date participationEntryDeadline;
     @ManyToMany
     @JoinTable(
-            name = "play_tour",
+            name = "player_tournament",
             joinColumns = @JoinColumn(name = "player_id"),
             inverseJoinColumns = @JoinColumn(name = "tournament_id"))
     List<Player> playerList;
-
 }
