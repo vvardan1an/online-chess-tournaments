@@ -84,8 +84,8 @@
         <!-- player table-->
 
 
-        <!-- create world_chess_champions table-->
-        <createTable tableName="world_chess_champions">
+        <!-- create world_chess_champion table-->
+        <createTable tableName="world_chess_champion">
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
@@ -112,9 +112,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="rating" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="rating" type="varchar(255)"/>
 
             <column name="peak_rating" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -124,15 +122,18 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="held_title_from_to" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-
             <column name="picture_url" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="quote" type="varchar(255)"/>
+            <column name="info" type="text"/>
+            <column name="blitz_rating" type="text"/>
+            <column name="rapid_rating" type="varchar(255)"/>
+            <column name="title" type="varchar(255)"/>
+
         </createTable>
-        <!-- world_chess_champions table-->
+        <!-- world_chess_champion table-->
 
 
         <!-- create tournament table-->
@@ -157,22 +158,12 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="is_age_restricted" type="tinyint(1)" defaultValue="0">
-                <constraints nullable="false"/>
-            </column>
-
             <column name="min_age_restriction" type="int"/>
             <column name="max_age_restriction" type="int"/>
             <column name="min_rating_restriction" type="int"/>
             <column name="max_rating_restriction" type="int"/>
 
-            <column name="participant_min_count" type="int">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="participant_max_count" type="int"/>
-
-            <column name="start_date" type="timestamp">
+            <column name="start_date" type="date">
                 <constraints nullable="false"/>
             </column>
 
@@ -186,6 +177,25 @@
             <column name="participation_entry_deadline" type="timestamp">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="round_count" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="end_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="time_control" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="participant_count" type="int"/>
+
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
         </createTable>
         <!-- tournament table-->
 
@@ -201,6 +211,8 @@
             </column>
         </createTable>
         <!-- player_tournament table-->
+
+
     </changeSet>
 
 </databaseChangeLog>

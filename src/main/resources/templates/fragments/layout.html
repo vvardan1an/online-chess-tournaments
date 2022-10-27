@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<body>
+<th:block th:fragment="header">
+    <!-- header -->
+    <header class="pageHeader">
+        <div class="overLayer"></div>
+        <div class="pageWrap">
+
+            <h1 class="logo" alt="Chess">
+                <a id="logo" href="#">
+                    <span class="hidden">Chess</span>
+                    <img src="/images/retina/output-onlinepngtools.png" alt="">
+                </a>
+            </h1>
+
+            <!-- nav container -->
+            <div class="navContainerWrapper">
+
+            <span class="menuBurgerButton"
+                  data-class-setter-on-click="{&quot;classname&quot;:&quot;showAdaptiveMenu&quot;, &quot;method&quot;:&quot;toggle&quot;, &quot;target&quot;:&quot;.navContainerWrapper&quot;}">
+                <span></span>
+            </span>
+
+                <div class="navContainer">
+
+                    <!-- main menu -->
+                    <nav class="mainMenu">
+                        <ul class="expandingMenuList">
+
+                            <li class="expandingMenu menuGroup menuGroupRead">
+                                <a href="#" class="expandingMenuTitle"><span>Read</span></a>
+                                <input class="expandingMenuTrigger" type="checkbox" id="trigerMenuRead" name="">
+                                <label class="expandingMenuTriggerLabel" for="trigerMenuRead"><span>Read</span></label>
+                                <div class="secondaryMenuWrapper">
+                                    <div class="flexWrapper">
+                                        <ul>
+                                            <li class="mmenuNews">
+                                                <a href="#">
+                                                    News<p>Keep up to date with all that's going on in the chess
+                                                    world</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <ul>
+                                            <li class="mmenuPlayers">
+                                                <a href="/worldChessChampions">
+                                                    World Chess Champions<p>Bios, ratings and more</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="expandingMenu menuGroup menuGroupWatch">
+                                <a href="#" class="expandingMenuTitle"><span>Watch</span></a>
+                                <input class="expandingMenuTrigger" type="checkbox" id="trigerMenuWatch" name="">
+                                <label class="expandingMenuTriggerLabel"
+                                       for="trigerMenuWatch"><span>Watch</span></label>
+                                <div class="secondaryMenuWrapper">
+                                    <div class="flexWrapper">
+                                        <ul class="">
+                                            <li class="mmenuTournaments">
+                                                <a href="#">
+                                                    Tournaments<p>Top events</p>
+                                                </a>
+                                            </li>
+                                            <li class="mmenuLiveVideos">
+                                                <a href="#">
+                                                    Shows<p>Watch live &amp; on demand</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                    <!-- END main menu -->
+
+                    <!-- user menu -->
+                    <nav class="userMenu">
+                        <div class="expandingMenu">
+    <span class="loader userPic">
+                <img src="https://assets.chess24.com/assets/0d48ac810b1acbac284bc0476cd6b4af/images/user/26x26_profile_default.png"
+                     alt=""/>        <span class="name">Log in / Register</span>
+    </span>
+                            <a class="userPic sMenuTrigger profile" href="#">
+                                <img src="https://assets.chess24.com/assets/0d48ac810b1acbac284bc0476cd6b4af/images/user/26x26_profile_default.png"
+                                     alt=""/> <span class="name">Log in / Register</span>
+                            </a>
+                            <div class="secondaryMenuWrapper">
+                                <ul class="userMenuList">
+                                    <li class="linkLogin">
+                                        <a href="/login" rel="nofollow" class="login-link">Log in</a></li>
+                                    <li class="linkRegister">
+                                        <a href="/register" rel="nofollow"
+                                           class="register-link">Register</a>
+                                    </li>
+
+                                    <li class="linkProfile">
+                                        <a href="#" class="profile">My Profile</a>
+                                    </li>
+
+                                    <li class="linkLab" id="labSectionId" style="display: none">
+                                        <a href="/lab">Laboratory</a>
+                                    </li>
+
+                                    <li class="linkLogout logOff" data="https://chess24.com/en/logout"
+                                        style="display: none;">
+                                        <a id="yt0">Log out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- END user menu -->
+
+                    <!-- language selector -->
+                    <nav class="langMenu">
+                        <div class="lang expandingMenu">
+                            <div class="expandingMenu">
+
+                        <span class="expandingMenuTitle">
+                            <span>
+                                <span class="langMenuSelector">English</span>
+                            </span>
+                        </span>
+
+                                <div class="secondaryMenuWrapper">
+                                    <ul class="langList">
+                                        <li class="active">
+                                            <a class="language-change-link" href="#" data-lang="en"> English </a>
+                                        </li>
+                                        <li class="">
+                                            <a class="language-change-link" href="#" data-lang="ru"> Русский </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- END language selector -->
+
+                </div>
+
+
+            </div>
+            <!-- END nav container -->
+
+            <!-- search -->
+            <div class="siteSearch" style="display: inline-block;">
+                <div id="search-bar">
+                    <div style="width: 195px; left: 0px;">
+                        <form action="/en/search" method="get"><input type="text" value="" name="q" id="q"></form>
+                    </div>
+                    <a class="active" style="right: 178px;"></a>
+                </div>
+            </div>
+            <!-- END search -->
+
+        </div>
+
+    </header>
+    <!-- END header -->
+</th:block>
+<th:block th:fragment="footer">
+    <!-- footer -->
+    <footer class="pageFooter">
+        <div class="pageWrap">
+
+            <!-- footer items -->
+            <div class="footerFlex">
+                <div>
+                    <h5>onlineChessTournaments</h5>
+                    <ul>
+                        <li><a href="#">About us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Languages</h5>
+                    <ul class="langList">
+
+                        <li>
+                            <a class="language-change-link" href="#" data-lang="en">
+                                English </a>
+                        </li>
+
+                        <li>
+                            <a class="language-change-link" href="#" data-lang="ru">
+                                Русский </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div>
+                    <h5>Follow</h5>
+
+                    <div class="icons-social">
+                        <a href="#"
+                           target="_blank" title="Github"><img src="/images/retina/githubLogo.png"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- END footer items -->
+
+            <!-- copyright and declaimers -->
+            <div class="footerCopyright">
+                <div class="fRt">
+                </div>
+                © onlineChessTournaments.com
+                | All rights reserved | Version: 2022-10-1.0
+            </div>
+
+        </div>
+    </footer>
+    <!-- END footer -->
+</th:block>
+</body>
+</html>

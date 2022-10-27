@@ -1,0 +1,366 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Chess - Play, Learn &amp; Watch Live Tournaments - chess24 | chess24.com</title>
+    <th:block th:insert="fragments/import::indexHeaderImports"></th:block>
+</head>
+<body class="userIsGuest" data-newhouse-baseurl="https://new.chess24.com/en"
+      data-snigelurl="https://cdn.snigelweb.com/adengine/chess24.com/loader.js">
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VFFNC" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- body container -->
+<div class="bodyContainer bodyLayout-sxga bodyLayout-blue user user_dashboard_rev">
+
+
+    <th:block th:insert="fragments/layout::header"></th:block>
+
+    <div class="flashMessages"></div>
+
+    <!-- page content -->
+    <div class="pageContent">
+
+
+        <!-- user stats -->
+
+        <!-- page wrap -->
+        <div class="pageWrap">
+
+            <!-- content wrap -->
+            <div class="contentWrap">
+
+
+                <div class="contentContainer">
+                    <div class="contentDashboard" id="dashboardRevision">
+                        <div class="row hero-slider" id="w-highlight">
+                            <div class="content-wrap">
+                                <div class="slider-slide">
+                                    <div class="slide-title">
+                                        <div class="header">ONLINE CHESS TOURNAMENTS</div>
+                                        <!--                                        <div class="date">6/30/2022</div>-->
+                                    </div>
+                                    <div class="slide-description">
+                                        <p>
+                                        </p>
+                                    </div>
+                                    <a class="slide-cta-button ui-button"
+                                       href="#">Watch</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row highlights ">
+                            <div class="contentWrap">
+
+                                <div id="leftSidebar">
+                                    <div class="sticky">
+                                    </div>
+                                </div>
+                                <div class="contentContainer" style="position: relative;">
+                                    <div class="contentContainerInsider showColorHeader">
+
+                                        <div class="colorHeader colorRead mmenuPlayers active">
+                                            <div class="colorHeaderIcon"></div>
+                                            <h2 class="title">
+                                                World Chess Champions
+                                            </h2>
+                                            <h2 class="subTitle">Bios, ratings and more</h2>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="contentContainerInsider" id="biographyContainer">
+
+                                        <div class="clear"></div>
+                                        <div class="chessPlayers usersList" id="biographyList">
+
+                                            <ul class="items">
+                                                <!--champions-->
+                                                <li th:each="wcc : ${wccList}" class="hasManagementButtons">
+                                                    <div class="userPic">
+                                                        <a href="">
+                                                            <img th:src="@{/worldChampionPicture/get(pngName=${wcc.name+wcc.surname})}"
+                                                                 th:alt="${wcc.name + ' ' + wcc.surname}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="userDetails">
+                                                        <ul class="rating">
+                                                            <li th:if="${wcc.died eq null}" class="rating">Rating:
+                                                                <strong><span
+                                                                        th:text="${wcc.rating}"/></strong></li>
+                                                            <li class="position">WCC No. <strong
+                                                                    th:text="${wcc.worldChampionNumber}"></strong></li>
+                                                        </ul>
+                                                        <h3>
+                                                            <a th:text="${wcc.name + ' ' + wcc.surname}"
+                                                               th:href="@{/${wcc.name + wcc.surname}}"></a>
+                                                            <span class="icoFlag flag3-rus"></span>
+                                                        </h3>
+                                                        <div class="details">
+                                                            <ul class="info">
+                                                                <li>Born: <strong
+                                                                        th:text="${wcc.birth_date.toGMTString().substring(0, 11)}"/>
+<!--                                                                    <strong th:if="${wcc.died eq null}" th:text="'(Age ' + ${currentYear - wcc.getBirth_date().getYear()} + ')'"/>-->
+                                                                </li>
+
+                                                                <li th:if="${wcc.died != null}">Died: <strong
+                                                                        th:text="${wcc.died.toGMTString().substring(0, 11)} + ' (Aged ' + ${(wcc.died.getYear()) - (wcc.birth_date.getYear())} + ')'"/>
+                                                                </li>
+
+                                                                <th:block th:if="${wcc.died eq null}">
+                                                                    <li>Blitz Rating: <strong
+                                                                            th:text="${wcc.blitzRating}"/>
+                                                                    <li>Rapid Rating: <strong
+                                                                            th:text="${wcc.rapidRating}"/>
+                                                                </th:block>
+
+                                                                <li>Peak Rating:
+                                                                    <strong th:text="${wcc.peakRating}"/>
+                                                                </li>
+
+                                                            </ul>
+                                                            <blockquote th:text="${wcc.quote}"/>
+                                                            <a class="gray-btn" th:href="@{/${wcc.name + wcc.surname}}">Full profile</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <!-- end champions-->
+                                            </ul>
+
+                                            <div class="keys" style="display:none"
+                                                 title="/en/read/players?ajax=biographyList&amp;group=none">
+                                                <span>3</span><span>139</span><span>161</span><span>176</span><span>772</span><span>172</span><span>35</span><span>70</span><span>12</span><span>31</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resize-triggers">
+                                        <div class="expand-trigger">
+                                        </div>
+                                        <div class="contract-trigger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END content wrap -->
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- END page wrap -->
+
+
+        <span class="field-errors" data-field="LostPasswordForm[email]" x="LostPasswordForm_email"
+              style="display: none; left: 0px; top: 0px;"></span><span class="field-errors" data-field="yt1"
+                                                                       style="display: none; left: 0px; top: 0px;"></span><span
+            class="field-errors" data-field="DataConsentForm[hasNecessaryConsent]"
+            x="DataConsentForm_hasNecessaryConsent" style="display: none; left: 0px; top: 0px;"></span><span
+            class="field-errors" data-field="DataConsentForm[hasSettingsConsent]" x="DataConsentForm_hasSettingsConsent"
+            style="display: none; left: 0px; top: 0px;"></span><span class="field-errors"
+                                                                     data-field="DataConsentForm[hasSocialMediaConsent]"
+                                                                     x="DataConsentForm_hasSocialMediaConsent"
+                                                                     style="display: none; left: 0px; top: 0px;"></span><span
+            class="field-errors" data-field="DataConsentForm[hasPerformanceConsent]"
+            x="DataConsentForm_hasPerformanceConsent" style="display: none; left: 0px; top: 0px;"></span><span
+            class="field-errors" data-field="DataConsentForm[hasMarketingConsent]"
+            x="DataConsentForm_hasMarketingConsent" style="display: none; left: 0px; top: 0px;"></span></div>
+    <!-- END page content -->
+
+
+    <div class="bubble modal" style="width: auto; display: none;">
+        <div class="bubble-contents">
+            <div class="popupInsider loginRegistrationPopup" data-failures="0" style="display: block;">
+
+                <div class="userRegistrationLogin">
+
+                    <div class="tabContent lost-password">
+                        <h3>Lost your password? We'll send you a link to reset it!</h3>
+                        <div>
+                            <form class="cPattern" data-validatemethod="clientvalidate" id="lost-password-form"
+                                  action="/en/lost-password" method="post">
+                                <input type="hidden" value="" name="csrf">
+                                <p><input placeholder="Email address"
+                                          data-error-required="Please enter your email address"
+                                          data-error-email="Please enter a valid email address" tabindex="1"
+                                          class="validate[email[skipOnError=1],required] cInputText"
+                                          name="LostPasswordForm[email]" id="LostPasswordForm_email" type="text"></p>
+                                <p>After submitting this form you'll receive an email with the reset password link. If
+                                    you still can't access your account please contact our <a href="/en/contact">customer
+                                        service</a>.</p>
+                                <p><input class="submit cBtnFlexi cBtnBlue" type="submit" name="yt1" value="Send"></p>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btnCloseDialog"><a></a></div>
+    </div>
+    <div class="bubble modal" style="width: auto; display: none;">
+        <div class="bubble-contents dataConsentModal">
+            <div class="popupInsider dataConsentPopup" style="display: block;">
+
+                <div class="userDataConsent">
+                    <header>
+                        <strong>Which features would you like to enable?</strong>
+                    </header>
+
+                    <div class="tabContent">
+
+                        <p>We respect your privacy and data protection guidelines. Some components of our site require
+                            cookies or local storage that handles personal information.</p>
+
+                        <p><a id="data-consent-show-options-link">Show Options</a></p>
+                        <p><a id="data-consent-hide-options-link">Hide Options</a></p>
+
+                        <div id="data-consent-form-container">
+                            <form class="cPattern" data-validatemethod="clientvalidate" id="data-consent-form"
+                                  action="/en/dashboard" method="post">
+                                <input type="hidden" value="" name="csrf">
+
+                                <dl>
+                                    <dt>
+                                        <div><input id="ytDataConsentForm_hasNecessaryConsent" type="hidden" value="0"
+                                                    name="DataConsentForm[hasNecessaryConsent]"><label
+                                                class="crContainer checkBox"
+                                                for="DataConsentForm_hasNecessaryConsent"><input disabled="disabled"
+                                                                                                 data-setting="hasNecessaryConsent"
+                                                                                                 value="1"
+                                                                                                 class="validate[safe] cPattern switchCheck"
+                                                                                                 name="DataConsentForm[hasNecessaryConsent]"
+                                                                                                 id="DataConsentForm_hasNecessaryConsent"
+                                                                                                 checked="checked"
+                                                                                                 type="checkbox"
+                                                                                                 data-pattern-checkbox="true"><label
+                                                class="crImg" for="DataConsentForm_hasNecessaryConsent"></label></label>
+                                        </div>
+                                    </dt>
+                                    <dd>
+                                        <h5>Necessary</h5>
+                                        General <strong>page access</strong>, using the <strong>Playzone</strong> and
+                                        <strong>broadcast</strong> features.
+                                    </dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>
+                                        <div><input id="ytDataConsentForm_hasSettingsConsent" type="hidden" value="0"
+                                                    name="DataConsentForm[hasSettingsConsent]"><label
+                                                class="crContainer checkBox"
+                                                for="DataConsentForm_hasSettingsConsent"><input tabindex="1"
+                                                                                                data-setting="hasSettingsConsent"
+                                                                                                value="1"
+                                                                                                class="validate[safe] cPattern switchCheck"
+                                                                                                name="DataConsentForm[hasSettingsConsent]"
+                                                                                                id="DataConsentForm_hasSettingsConsent"
+                                                                                                type="checkbox"
+                                                                                                data-pattern-checkbox="true"><label
+                                                class="crImg" for="DataConsentForm_hasSettingsConsent"></label></label>
+                                        </div>
+                                    </dt>
+                                    <dd>
+                                        <h5>Settings</h5>
+                                        Remember your <strong>personal settings</strong> including language, chessboard
+                                        theme and other options.
+                                    </dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>
+                                        <div><input id="ytDataConsentForm_hasSocialMediaConsent" type="hidden" value="0"
+                                                    name="DataConsentForm[hasSocialMediaConsent]"><label
+                                                class="crContainer checkBox"
+                                                for="DataConsentForm_hasSocialMediaConsent"><input tabindex="2"
+                                                                                                   data-setting="hasSocialMediaConsent"
+                                                                                                   value="1"
+                                                                                                   class="validate[safe] cPattern switchCheck"
+                                                                                                   name="DataConsentForm[hasSocialMediaConsent]"
+                                                                                                   id="DataConsentForm_hasSocialMediaConsent"
+                                                                                                   type="checkbox"
+                                                                                                   data-pattern-checkbox="true"><label
+                                                class="crImg"
+                                                for="DataConsentForm_hasSocialMediaConsent"></label></label></div>
+                                    </dt>
+                                    <dd>
+                                        <h5>Social Media</h5>
+                                        See social media <strong>feeds and share</strong> content you like.
+                                    </dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>
+                                        <div><input id="ytDataConsentForm_hasPerformanceConsent" type="hidden" value="0"
+                                                    name="DataConsentForm[hasPerformanceConsent]"><label
+                                                class="crContainer checkBox"
+                                                for="DataConsentForm_hasPerformanceConsent"><input tabindex="3"
+                                                                                                   data-setting="hasPerformanceConsent"
+                                                                                                   value="1"
+                                                                                                   class="validate[safe] cPattern switchCheck"
+                                                                                                   name="DataConsentForm[hasPerformanceConsent]"
+                                                                                                   id="DataConsentForm_hasPerformanceConsent"
+                                                                                                   type="checkbox"
+                                                                                                   data-pattern-checkbox="true"><label
+                                                class="crImg"
+                                                for="DataConsentForm_hasPerformanceConsent"></label></label></div>
+                                    </dt>
+                                    <dd>
+                                        <h5>Statistics</h5>
+                                        Usage of <strong>statistics</strong> that help us <strong>improve parts of our
+                                        site</strong> relevant to you.
+                                    </dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>
+                                        <div><input id="ytDataConsentForm_hasMarketingConsent" type="hidden" value="0"
+                                                    name="DataConsentForm[hasMarketingConsent]"><label
+                                                class="crContainer checkBox"
+                                                for="DataConsentForm_hasMarketingConsent"><input tabindex="4"
+                                                                                                 data-setting="hasMarketingConsent"
+                                                                                                 value="1"
+                                                                                                 class="validate[safe] cPattern switchCheck"
+                                                                                                 name="DataConsentForm[hasMarketingConsent]"
+                                                                                                 id="DataConsentForm_hasMarketingConsent"
+                                                                                                 type="checkbox"
+                                                                                                 data-pattern-checkbox="true"><label
+                                                class="crImg" for="DataConsentForm_hasMarketingConsent"></label></label>
+                                        </div>
+                                    </dt>
+                                    <dd>
+                                        <h5>Marketing</h5>
+                                        Personalized advertisements that enable us to <strong>offer free
+                                        services</strong>.
+                                    </dd>
+                                </dl>
+
+
+                            </form>
+                            <p><a id="data-consent-details-link">Learn more about the details...</a></p>
+                        </div>
+
+                        <div class="opt-in">
+                            <a class="cBtnFlexi cBtnBlue" id="data-consent-opt-in-all"
+                               data-e2e-key="data-consent-opt-in-all"><span class="cIcon cIconOKwhite"></span> Accept
+                                all</a><a class="cBtnFlexi cBtnBlue" id="data-consent-close"><span
+                                class="cIcon cIconWarning"></span> save my choice</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <th:block th:insert="fragments/layout::footer"></th:block>
+</div>
+</body>
+<!-- END body container -->
+
+<div id="language" data-language="en"></div>
+
+</html>
