@@ -25,18 +25,19 @@ public class Tournament {
     private boolean isTitled;
     @Enumerated(EnumType.STRING)
     private TournamentSystem tournamentSystem;
-    private boolean isAgeRestricted;
     private int minAgeRestriction;
     private int maxAgeRestriction;
     private int minRatingRestriction;
     private int maxRatingRestriction;
-    private int participantMinCount;
-    private int participantMaxCount;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date startDate;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date participationEntryDeadline;
+    private Date endDate;
+    private String timeControl;
+    private int participantCount;
+    private String type;
     @ManyToMany
     @JoinTable(
             name = "player_tournament",

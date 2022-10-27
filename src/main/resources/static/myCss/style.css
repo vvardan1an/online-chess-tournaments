@@ -1,0 +1,12 @@
+.pageWrap{
+    min-height: auto !important;
+}
+.gray-btn{
+    position: absolute;
+    right: 220px;
+    bottom: 10px;
+    background-color: #dedddd;
+    border-radius: 8px;
+    padding: 4px 8px !important;
+    box-shadow: 0 0 0 0.1rem rgb(222 221 221 / 50%);
+}
