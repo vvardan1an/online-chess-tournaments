@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" class="login-pf" lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="login-pf" lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -50,78 +49,84 @@
                           method="post">
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="username" class="form-control" name="name" value=""
+                            <label for="username"></label><input type="text" id="username" class="form-control"
+                                                                 name="name" value=""
                                                                  autocomplete="name"
                                                                  placeholder="Name">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="surname" class="form-control" name="surname" value=""
+                            <label for="username"></label><input type="text" id="surname" class="form-control"
+                                                                 name="surname" value=""
                                                                  autocomplete="surname"
                                                                  placeholder="Surname">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="nationality" class="form-control" name="age" value=""
+                            <label for="username"></label><input type="text" id="nationality" class="form-control"
+                                                                 name="age" value=""
                                                                  autocomplete="age"
                                                                  placeholder="Nationality">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="age" class="form-control" name="age" value=""
+                            <label for="username"></label><input type="text" id="age" class="form-control" name="age"
+                                                                 value=""
                                                                  autocomplete="age"
                                                                  placeholder="Age">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="fide-rating" class="form-control" name="age" value=""
+                            <label for="username"></label><input type="text" id="fide-rating" class="form-control"
+                                                                 name="age" value=""
                                                                  autocomplete="fide-rating"
                                                                  placeholder="Fide Rating">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="national-rating" class="form-control" name="age" value=""
+                            <label for="username"></label><input type="text" id="national-rating" class="form-control"
+                                                                 name="age" value=""
                                                                  autocomplete="national-rating"
                                                                  placeholder="National Rating">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
 
+                        <span style="color: grey">Title</span>
                         <div class="form-group">
-                            <select name="title">
-                               <option value="NM">NM</option>
-                               <option value="CM">CM</option>
-                               <option value="FM">FM</option>
-                               <option value="IM">IM</option>
-                               <option value="GM">GM</option>
-                               <option value="UNTITLED">UNTITLED</option>
-                           </select>
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <option value="NM">NM</option>
+                                <option value="CM">CM</option>
+                                <option value="FM">FM</option>
+                                <option value="IM">IM</option>
+                                <option value="GM">GM</option>
+                                <option value="UNTITLED">UNTITLED</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <input type="file"/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email"></label><input type="text" id="email" class="form-control" name="email" value=""
+                            <label for="email"></label><input type="text" id="email" class="form-control" name="email"
+                                                              value=""
                                                               autocomplete="email"
                                                               placeholder="E-mail">
                             <!-- <label for="email" class="control-label">Email</label> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="password"></label><input type="password" id="password" class="form-control" name="password"
+                            <label for="password"></label><input type="password" id="password" class="form-control"
+                                                                 name="password"
                                                                  autocomplete="new-password"
                                                                  placeholder="Password">
                             <!-- <label for="password" class="control-label">Password</label> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm"></label><input type="password" id="password-confirm" class="form-control" name="password-confirm"
+                            <label for="password-confirm"></label><input type="password" id="password-confirm"
+                                                                         class="form-control" name="password-confirm"
                                                                          placeholder="Repeat password">
                             <!-- <label for="password-confirm" class="control-label">Confirm password</label> -->
                         </div>

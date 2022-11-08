@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public String mainPage() {
         return "index";
     }
@@ -17,5 +17,4 @@ public class MainController {
     public String loginPage() {
         return "login";
     }
-
 }

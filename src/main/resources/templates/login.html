@@ -1,18 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" class="login-pf" lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="login-pf" lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="robots" content="noindex, nofollow">
 
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>        Sign in to your account
+    <title> Sign in to your account
 
     </title>
-    <link rel="icon" href="//auth//resources//ow5rn//login//chess24//img//favicon.ico" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-    <link href="https://auth.chess24.com/auth/resources/ow5rn/login/chess24/css/login.css" rel="stylesheet" />
+    <link rel="icon" href="//auth//resources//ow5rn//login//chess24//img//favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://auth.chess24.com/auth/resources/ow5rn/login/chess24/css/login.css" rel="stylesheet"/>
 </head>
 
 <body class="">
@@ -20,23 +20,25 @@
     <header class="">
         <div id="kc-header" class="login-pf-page-header">
             <div class="header">
-                <svg class="logo" width="147" height="32" viewBox="0 0 147 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="6.56299" y="5.5625" width="22.2523" height="20.8615" fill="white" />
+                <svg class="logo" width="147" height="32" viewBox="0 0 147 32" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6.56299" y="5.5625" width="22.2523" height="20.8615" fill="white"/>
                     <defs>
-                        <linearGradient id="paint0_linear_1122_102514" x1="38.4574" y1="31.8379" x2="-2.37751" y2="0.000472632"
+                        <linearGradient id="paint0_linear_1122_102514" x1="38.4574" y1="31.8379" x2="-2.37751"
+                                        y2="0.000472632"
                                         gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#F9A401" />
-                            <stop offset="1" stop-color="#F66F4D" />
+                            <stop stop-color="#F9A401"/>
+                            <stop offset="1" stop-color="#F66F4D"/>
                         </linearGradient>
                     </defs>
                 </svg>
             </div>
         </div>
         <div class="card-pf">
-            <h2 class="title" id="kc-page-title">        Sign in to your account
+            <h2 class="title" id="kc-page-title"> Sign in to your account
 
-                </h2>
-            </div>
+            </h2>
+        </div>
     </header>
     <main>
         <div class="form-horizontal">
@@ -44,50 +46,60 @@
                 <div id="kc-content-wrapper">
 
 
-                    <form id="kc-register-form" class="form-horizontal" action="https://auth.chess24.com/auth/realms/chess24-prod/login-actions/authenticate?session_code=dOfqddTiAfmTryHAVZUs9Qh_3DxnLoV-AzIdRLaO_ec&amp;execution=f0ca9881-3fd7-45d9-8390-4d2f1498256e&amp;client_id=chess24ng-service-prod&amp;tab_id=cHiGqeWrLMY" method="post">
+                    <form id="kc-register-form" class="form-horizontal"
+                          action="https://auth.chess24.com/auth/realms/chess24-prod/login-actions/authenticate?session_code=dOfqddTiAfmTryHAVZUs9Qh_3DxnLoV-AzIdRLaO_ec&amp;execution=f0ca9881-3fd7-45d9-8390-4d2f1498256e&amp;client_id=chess24ng-service-prod&amp;tab_id=cHiGqeWrLMY"
+                          method="post">
                         <div class="form-group">
-                            <input tabindex="1" type="text" id="username" class="form-control" name="username" value="" autofocus autocomplete="username"
+                            <input tabindex="1" type="text" id="username" class="form-control" name="username" value=""
+                                   autofocus autocomplete="username"
                                    placeholder="Username or E-mail">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
 
                         <div class="form-group">
-                            <input tabindex="2" type="password" id="password" class="form-control" name="password" autocomplete="new-password"
-                                   placeholder="Password" >
+                            <input tabindex="2" type="password" id="password" class="form-control" name="password"
+                                   autocomplete="new-password"
+                                   placeholder="Password">
                             <!-- <label for="password" class="control-label">Password</label> -->
                         </div>
 
                         <div class="remember-me-row">
                             <div class="checkbox">
-                                <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox" class="checkbox-checkmark" />
+                                <input tabindex="3" id="rememberMe" name="rememberMe" type="checkbox"
+                                       class="checkbox-checkmark"/>
                                 <label class="remember-me-label" for="rememberMe"> Запомнить меня</label>
                             </div>
-                            <span><a tabindex="5" href="https://chess24.com/lost-password">Забыли пароль?</a></span>
+                            <span><a tabindex="5" href="#">Забыли пароль?</a></span>
                         </div>
 
                         <div class="form-group">
-                            <input type="hidden" id="id-hidden-input" name="credentialId" />
-                            <button tabindex="4" class="btn btn-primary btn-block btn-lg" type="submit" id="kc-register">Вход</button>
+                            <input type="hidden" id="id-hidden-input" name="credentialId"/>
+                            <button tabindex="4" class="btn btn-primary btn-block btn-lg" type="submit"
+                                    id="kc-register">Вход
+                            </button>
                         </div>
 
                         <div class="hr-container">
-                            <hr />
+                            <hr/>
                             <p class="or">or</p>
-                            <hr />
+                            <hr/>
                         </div>
 
                         <div class="social-logins">
-                            <a href="/auth/realms/chess24-prod/broker/apple/login?client_id=chess24ng-service-prod&amp;tab_id=cHiGqeWrLMY&amp;session_code=dOfqddTiAfmTryHAVZUs9Qh_3DxnLoV-AzIdRLaO_ec">
+                            <a href="#">
                                 <button type="button" class="social-button">
-                                    <svg width="20" height="26" viewBox="0 0 20 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="20" height="26" viewBox="0 0 20 26" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                                 d="M10.2969 5.84615C11.4063 5.84615 12.7969 5.07311 13.625 4.04238C14.375 3.10829 14.9219 1.80377 14.9219 0.499257C14.9219 0.322101 14.9063 0.144946 14.875 0C13.6406 0.0483153 12.1563 0.85357 11.2656 1.93261C10.5625 2.75397 9.92188 4.04238 9.92188 5.363C9.92188 5.55626 9.95313 5.74952 9.96875 5.81394C10.0469 5.83005 10.1719 5.84615 10.2969 5.84615ZM6.39063 25.3333C7.90625 25.3333 8.57813 24.2865 10.4688 24.2865C12.3906 24.2865 12.8125 25.3011 14.5 25.3011C16.1563 25.3011 17.2656 23.7228 18.3125 22.1767C19.4844 20.4052 19.9688 18.6658 20 18.5853C19.8906 18.5531 16.7188 17.2164 16.7188 13.4639C16.7188 10.2106 19.2188 8.74507 19.3594 8.63234C17.7031 6.18436 15.1875 6.11994 14.5 6.11994C12.6406 6.11994 11.125 7.27951 10.1719 7.27951C9.14063 7.27951 7.78125 6.18436 6.17188 6.18436C3.10938 6.18436 0 8.79339 0 13.7216C0 16.7815 1.15625 20.0186 2.57813 22.1123C3.79687 23.8839 4.85937 25.3333 6.39063 25.3333Z"
-                                                fill="black" />
+                                                fill="black"/>
                                     </svg>
                                 </button>
                             </a>
-                            <a href="/auth/realms/chess24-prod/broker/facebook/login?client_id=chess24ng-service-prod&amp;tab_id=cHiGqeWrLMY&amp;session_code=dOfqddTiAfmTryHAVZUs9Qh_3DxnLoV-AzIdRLaO_ec">
-                                <button type="button" href="/auth/realms/chess24-prod/broker/facebook/login?client_id=chess24ng-service-prod&amp;tab_id=cHiGqeWrLMY&amp;session_code=dOfqddTiAfmTryHAVZUs9Qh_3DxnLoV-AzIdRLaO_ec" class="social-button">
+                            <a href="#">
+                                <button type="button"
+                                        href="/auth/realms/chess24-prod/broker/facebook/login?client_id=chess24ng-service-prod&amp;tab_id=cHiGqeWrLMY&amp;session_code=dOfqddTiAfmTryHAVZUs9Qh_3DxnLoV-AzIdRLaO_ec"
+                                        class="social-button">
                                     <svg viewBox="0 0 32 32">
                                         <path
                                                 d="M30 16C30 8.26719 23.7328 2 16 2C8.26719 2 2 8.26719 2 16C2 22.9891 7.11875 28.7805 13.8125 29.8305V20.0469H10.2578V16H13.8125V12.9156C13.8125 9.40742 15.9016 7.46875 19.1008 7.46875C20.632 7.46875 22.2344 7.74219 22.2344 7.74219V11.1875H20.468C18.7289 11.1875 18.1875 12.2676 18.1875 13.375V16H22.0703L21.4496 20.0469H18.1875V29.8305C24.8813 28.7805 30 22.9891 30 16Z"
@@ -100,8 +112,6 @@
                             </a>
                         </div>
                     </form>
-
-
 
 
                     <div id="kc-info" class="login-pf-signup">

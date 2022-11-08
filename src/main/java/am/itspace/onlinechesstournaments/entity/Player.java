@@ -26,7 +26,7 @@ public class Player {
     private int nationalRating;
     @Enumerated(EnumType.STRING)
     private Title title;
-    private String picture;
+    private String pictureUrl;
     private String email;
     private String password;
     @ManyToMany

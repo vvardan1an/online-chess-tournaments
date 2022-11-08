@@ -1,7 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" class="login-pf" lang="en">
-
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" class="login-pf" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -46,16 +44,24 @@
                 <div id="kc-content-wrapper">
 
                     <form id="kc-register-form" class="form-horizontal"
-                          action="https://auth.chess24.com/auth/realms/chess24-prod/login-actions/registration?session_code=8Jk6pwMCrNaBc_mInr9tZRihBwC2c27bm2s4aCh84R0&amp;execution=9dd6f0b4-3628-45dd-994f-7b44937dafe6&amp;client_id=chess24ng-service-prod&amp;tab_id=uyMkn-4gAXY"
+                          action="/registerOrg"
                           method="post">
+                        <div class="form-group" th:each="error:${allErrors}"
+                             th:text="${error}">
+
+                        </div>
+
+                        <div><p th:if="${#fields.hasErrors('age')}">Invalid Age</p></div>
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="username" class="form-control"
-                                                                 name="name" value=""
-                                                                 autocomplete="name"
-                                                                 placeholder="Name">
+                            <label for="username"></label>
+                            <input type="text" id="username" class="form-control"
+                                   name="name" value=""
+                                   autocomplete="name"
+                                   placeholder="Name">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
+                        <div th:if="${emailError != null}"><p style="color: red" th:text="${emailError}"></p></div>
 
                         <div class="form-group">
                             <label for="username"></label><input type="text" id="surname" class="form-control"
@@ -66,20 +72,20 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="nationality" class="form-control"
-                                                                 name="age" value=""
-                                                                 autocomplete="age"
-                                                                 placeholder="Nationality">
+                            <label for="nationality"></label><input type="text" id="nationality" class="form-control"
+                                                                    name="nationality" value=""
+                                                                    autocomplete="nationality"
+                                                                    placeholder="Nationality">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
 
                         <div class="form-group">
-                            <label for="username"></label><input type="text" id="age" class="form-control" name="age"
-                                                                 value=""
-                                                                 autocomplete="age"
-                                                                 placeholder="Age">
+                            <label for="age"></label>
+                            <input type="number" id="age" class="form-control" name="age"
+                                   placeholder="Age">
                             <!-- <label for="username" class="control-label">Username</label> -->
                         </div>
+                        <div th:if="${emailError != null}"><p style="color: red" th:text="${emailError}"></p></div>
 
                         <div class="form-group">
                             <label for="email"></label><input type="text" id="email" class="form-control" name="email"
@@ -91,7 +97,7 @@
 
                         <div class="form-group">
                             <label for="password"></label><input type="password" id="password" class="form-control"
-                                                                 name="password"
+                                                                 name="password" value=""
                                                                  autocomplete="new-password"
                                                                  placeholder="Password">
                             <!-- <label for="password" class="control-label">Password</label> -->
@@ -104,11 +110,13 @@
                             <!-- <label for="password-confirm" class="control-label">Confirm password</label> -->
                         </div>
 
-
                         <div class="form-group">
-                            <button class="btn btn-primary btn-block btn-lg" type="submit" id="kc-register">
-                                Register
-                            </button>
+                            <a href="/">
+                                <button class="btn btn-primary btn-block btn-lg" type="submit" id="kc-register">
+                                    Register
+                                </button>
+                            </a>
+
                         </div>
                     </form>
                     <script>
