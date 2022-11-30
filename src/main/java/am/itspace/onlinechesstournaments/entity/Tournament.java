@@ -1,22 +1,25 @@
 package am.itspace.onlinechesstournaments.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import am.itspace.onlinechesstournaments.model.TournamentSystem;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Data
+
+
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "tournament")
 public class Tournament {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -43,5 +46,6 @@ public class Tournament {
             name = "player_tournament",
             joinColumns = @JoinColumn(name = "player_id"),
             inverseJoinColumns = @JoinColumn(name = "tournament_id"))
+    @ToString.Exclude
     List<Player> playerList;
 }

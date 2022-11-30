@@ -1,23 +1,18 @@
-package am.itspace.onlinechesstournaments.entity;
+package am.itspace.onlinechesstournaments.dto.request;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Getter
-@Setter
-@ToString
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Entity
-@Table(name = "world_chess_champion")
-public class WorldChessChampion {
+public class WccRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     private String name;
     private String surname;
     private Date birth_date;
@@ -25,9 +20,8 @@ public class WorldChessChampion {
     private String cityCountry;
     private String federation;
     private int rating;
-    private int peakRating;
+    private String peakRating;
     private int worldChampionNumber;
-    @Column(name = "picture_url")
     private String picture;
     private String quote;
     private String info;

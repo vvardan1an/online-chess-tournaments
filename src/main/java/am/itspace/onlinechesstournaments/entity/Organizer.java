@@ -1,19 +1,19 @@
 package am.itspace.onlinechesstournaments.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
+@Setter
+@Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "organizer")
 public class Organizer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

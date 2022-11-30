@@ -112,9 +112,9 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="rating" type="varchar(255)"/>
+            <column name="rating" type="int"/>
 
-            <column name="peak_rating" type="varchar(255)">
+            <column name="peak_rating" type="int">
                 <constraints nullable="false"/>
             </column>
 
@@ -128,8 +128,8 @@
 
             <column name="quote" type="varchar(255)"/>
             <column name="info" type="text"/>
-            <column name="blitz_rating" type="text"/>
-            <column name="rapid_rating" type="varchar(255)"/>
+            <column name="blitz_rating" type="int"/>
+            <column name="rapid_rating" type="int"/>
             <column name="title" type="varchar(255)"/>
 
         </createTable>

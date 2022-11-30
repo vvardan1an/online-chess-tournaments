@@ -1,5 +1,6 @@
 package am.itspace.onlinechesstournaments.entity;
 
+import am.itspace.onlinechesstournaments.model.Title;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,9 +31,9 @@ public class Player {
     private String email;
     private String password;
     @ManyToMany
-    @JoinTable(
-            name = "player_tournament",
+    @JoinTable(name = "player_tournament",
             joinColumns = @JoinColumn(name = "tournament_id"),
-            inverseJoinColumns = @JoinColumn(name = "player_id"))
+            inverseJoinColumns = @JoinColumn(name = "player_id")
+    )
     List<Tournament> playerList;
 }
