@@ -1,6 +1,6 @@
 package am.itspace.onlinechesstournamentcommon.service;
 
-import am.itspace.onlinechesstournaments.entity.WorldChessChampion;
+import am.itspace.onlinechesstournamentcommon.entity.WorldChessChampion;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

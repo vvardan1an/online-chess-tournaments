@@ -2,6 +2,8 @@ package am.itspace.onlinechesstournamentcommon.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+
 @Setter
 @Getter
 @ToString

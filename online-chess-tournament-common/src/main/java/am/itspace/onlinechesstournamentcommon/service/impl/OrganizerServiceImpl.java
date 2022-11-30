@@ -1,6 +1,6 @@
 package am.itspace.onlinechesstournamentcommon.service.impl;
 
-import am.itspace.onlinechesstournaments.service.OrganizerService;
+import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

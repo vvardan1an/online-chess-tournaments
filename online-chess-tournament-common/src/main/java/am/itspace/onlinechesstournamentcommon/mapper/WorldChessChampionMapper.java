@@ -1,8 +1,8 @@
 package am.itspace.onlinechesstournamentcommon.mapper;
 
-import am.itspace.onlinechesstournaments.dto.request.WccRequest;
-import am.itspace.onlinechesstournaments.dto.response.WccResponse;
-import am.itspace.onlinechesstournaments.entity.WorldChessChampion;
+import am.itspace.onlinechesstournamentcommon.entity.WorldChessChampion;
+import am.itspace.onlinechesstournamentdatatransfer.request.WccRequest;
+import am.itspace.onlinechesstournamentdatatransfer.response.WccResponse;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

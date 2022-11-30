@@ -1,6 +1,6 @@
 package am.itspace.onlinechesstournamentmvc.controller;
 
-import am.itspace.onlinechesstournaments.service.WorldChessChampionService;
+import am.itspace.onlinechesstournamentcommon.service.WorldChessChampionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

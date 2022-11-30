@@ -1,6 +1,6 @@
 package am.itspace.onlinechesstournamentcommon.entity;
 
-import am.itspace.onlinechesstournaments.model.Title;
+import am.itspace.onlinechesstournamentdatatransfer.model.Title;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
