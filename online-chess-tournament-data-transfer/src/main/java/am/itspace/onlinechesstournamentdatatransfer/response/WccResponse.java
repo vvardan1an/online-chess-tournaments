@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -16,12 +16,12 @@ public class WccResponse {
     private int id;
     private String name;
     private String surname;
-    private Date birth_date;
-    private Date died;
+    private LocalDate birth_date;
+    private LocalDate died;
     private String cityCountry;
     private String federation;
     private int rating;
-    private String peakRating;
+    private int peakRating;
     private int worldChampionNumber;
     private String picture;
     private String quote;

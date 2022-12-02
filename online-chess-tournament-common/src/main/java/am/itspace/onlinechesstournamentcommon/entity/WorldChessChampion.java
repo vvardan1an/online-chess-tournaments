@@ -3,6 +3,7 @@ package am.itspace.onlinechesstournamentcommon.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -20,8 +21,8 @@ public class WorldChessChampion {
     private int id;
     private String name;
     private String surname;
-    private Date birth_date;
-    private Date died;
+    private LocalDate birth_date;
+    private LocalDate died;
     private String cityCountry;
     private String federation;
     private int rating;

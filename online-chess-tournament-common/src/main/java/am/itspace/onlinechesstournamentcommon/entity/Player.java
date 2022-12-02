@@ -1,21 +1,21 @@
 package am.itspace.onlinechesstournamentcommon.entity;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.Title;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "player")
 public class Player {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -35,5 +35,6 @@ public class Player {
             joinColumns = @JoinColumn(name = "tournament_id"),
             inverseJoinColumns = @JoinColumn(name = "player_id")
     )
+    @ToString.Exclude
     List<Tournament> playerList;
 }

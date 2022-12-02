@@ -15,7 +15,7 @@ public class WorldChessChampionController {
     private final WorldChessChampionService worldChessChampionService;
 
     @GetMapping
-    public String getAll(@PageableDefault(sort = "worldChessChampionNumber", direction = Sort.Direction.ASC) Pageable pageable){
+    public String getAll(@PageableDefault(sort = "worldChessChampionNumber", direction = Sort.Direction.ASC) Pageable pageable) {
         worldChessChampionService.findAll(pageable);
         return "";
     }

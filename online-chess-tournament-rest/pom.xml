@@ -6,7 +6,6 @@
         <groupId>am.itspace</groupId>
         <artifactId>online-chess-tournaments</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>online-chess-tournament-rest</artifactId>
@@ -16,7 +15,9 @@
     <properties>
         <java.version>11</java.version>
     </properties>
+
     <dependencies>
+
         <dependency>
             <groupId>am.itspace</groupId>
             <artifactId>online-chess-tournament-common</artifactId>

@@ -18,7 +18,9 @@ public class WorldChessChampionServiceImpl implements WorldChessChampionService 
 
     @Value("C:\\Users\\Hayk\\IdeaProjects\\online-chess-tournaments\\src\\main\\resources\\static\\worldChampionsPictures\\")
     private String wccPicturesPath;
+
     private final WorldChessChampionRepository worldChessChampionRepository;
+
     private final IOUtil ioUtil;
 
     public byte[] getPicture(String pngName) throws IOException {
@@ -27,7 +29,7 @@ public class WorldChessChampionServiceImpl implements WorldChessChampionService 
 
     @Override
     public void add() {
-
+        
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.net.URL;
 public class IOUtil {
 
     public byte[] getAllBytesByUrl(String fileUrl) throws IOException {
-        log.info("request get image");
+        log.info("request to get image");
         try {
             URL url = new URL(fileUrl);
             try (InputStream inputStream = url.openStream()) {
@@ -21,7 +21,7 @@ public class IOUtil {
             }
         } catch (IOException e) {
             log.error("fail to get image");
-            throw new IOException("Exceptions during IO operations with URL: " + fileUrl, e);
+            throw new IOException("Exception was thrown during IO operations with URL: " + fileUrl, e);
         }
     }
 }

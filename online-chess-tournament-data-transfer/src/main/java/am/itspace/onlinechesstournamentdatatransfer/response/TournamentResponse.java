@@ -1,30 +1,23 @@
-package am.itspace.onlinechesstournamentcommon.entity;
+package am.itspace.onlinechesstournamentdatatransfer.response;
 
+import am.itspace.onlinechesstournamentdatatransfer.model.Title;
 import am.itspace.onlinechesstournamentdatatransfer.model.TournamentSystem;
-import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Entity
-@Table(name = "tournament")
-public class Tournament {
+public class TournamentResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private boolean isRated;
     private boolean isTitled;
-    @Enumerated(EnumType.STRING)
     private TournamentSystem tournamentSystem;
     private int minAgeRestriction;
     private int maxAgeRestriction;
@@ -32,17 +25,25 @@ public class Tournament {
     private int maxRatingRestriction;
     private LocalDateTime startDate;
     private String description;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime participationEntryDeadline;
     private LocalDateTime endDate;
     private String timeControl;
     private int participantCount;
     private String type;
-    @ManyToMany
-    @JoinTable(
-            name = "player_tournament",
-            joinColumns = @JoinColumn(name = "player_id"),
-            inverseJoinColumns = @JoinColumn(name = "tournament_id"))
-    @ToString.Exclude
-    List<Player> playerList;
+    private List<PlayerDto> playerList;
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class PlayerDto {
+
+        private int id;
+        private String name;
+        private String surname;
+        private String nationality;
+        private int age;
+        private int fideRating;
+        private int nationalRating;
+        private Title title;
+        private String picture;
+    }
 }
