@@ -1,0 +1,218 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="hmanukyan" id="insertData">
+
+        <!-- create organizer table-->
+        <createTable tableName="organizer">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="surname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="nationality" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="age" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!-- organizer table-->
+
+
+        <!-- create player table-->
+        <createTable tableName="player">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="surname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="nationality" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="age" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="fide_rating" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="national_rating" type="int"/>
+
+            <column name="title" type="enum('UNTITLED', 'NM', 'CM', 'IM', 'GM')">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="picture_url" type="varchar(255)"/>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <!-- player table-->
+
+
+        <!-- create world_chess_champion table-->
+        <createTable tableName="world_chess_champion">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="surname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="birth_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="died" type="date"/>
+
+            <column name="city_country" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="federation" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="rating" type="int"/>
+
+            <column name="peak_rating" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="world_champion_number" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="picture_url" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="quote" type="varchar(255)"/>
+            <column name="info" type="text"/>
+            <column name="blitz_rating" type="int"/>
+            <column name="rapid_rating" type="int"/>
+            <column name="title" type="varchar(255)"/>
+
+        </createTable>
+        <!-- world_chess_champion table-->
+
+
+        <!-- create tournament table-->
+        <createTable tableName="tournament">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="is_rated" type="tinyint(1)" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="is_titled" type="tinyint(1)" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="tournament_system" type="enum('SWISS', 'KNOCK_OUT', 'ROUND_ROBIN')">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="min_age_restriction" type="int"/>
+            <column name="max_age_restriction" type="int"/>
+            <column name="min_rating_restriction" type="int"/>
+            <column name="max_rating_restriction" type="int"/>
+
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="organizer_id" type="int">
+                <constraints nullable="false" foreignKeyName="organizer_id_fk" referencedTableName="organizer"
+                             referencedColumnNames="id"/>
+            </column>
+
+            <column name="description" type="tinytext"/>
+
+            <column name="participation_entry_deadline" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="round_count" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="end_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="time_control" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="participant_count" type="int"/>
+
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <!-- tournament table-->
+
+
+        <!-- create player_tournament table-->
+        <createTable tableName="player_tournament">
+            <column name="player_id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="tournament_id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+        <!-- player_tournament table-->
+
+
+    </changeSet>
+
+</databaseChangeLog>
