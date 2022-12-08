@@ -15,5 +15,4 @@ public class OrganizerResponse {
     private String nationality;
     private int age;
     private String email;
-    private String password;
 }

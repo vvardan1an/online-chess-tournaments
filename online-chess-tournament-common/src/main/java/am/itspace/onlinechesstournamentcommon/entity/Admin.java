@@ -11,20 +11,12 @@ import javax.persistence.*;
 @ToString
 @Builder
 @Entity
-@Table(name = "organizer")
-public class Organizer {
+@Table(name = "admin")
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private String name;
-
-    private String surname;
-
-    private String nationality;
-
-    private int age;
 
     private String email;
 

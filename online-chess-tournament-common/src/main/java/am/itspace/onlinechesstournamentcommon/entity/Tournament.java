@@ -32,7 +32,6 @@ public class Tournament {
     private int maxRatingRestriction;
     private LocalDateTime startDate;
     private String description;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime participationEntryDeadline;
     private LocalDateTime endDate;
     private String timeControl;
@@ -43,6 +42,5 @@ public class Tournament {
             name = "player_tournament",
             joinColumns = @JoinColumn(name = "player_id"),
             inverseJoinColumns = @JoinColumn(name = "tournament_id"))
-    @ToString.Exclude
     List<Player> playerList;
 }

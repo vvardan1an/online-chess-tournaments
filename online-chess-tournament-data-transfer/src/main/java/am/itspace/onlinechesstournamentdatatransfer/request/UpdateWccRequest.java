@@ -1,7 +1,7 @@
 package am.itspace.onlinechesstournamentdatatransfer.request;
 
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,10 +11,9 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class WccRequest {
+@NoArgsConstructor
+public class UpdateWccRequest {
 
     @Size(min = 2, max = 30)
     @NotBlank
