@@ -10,5 +10,4 @@ public class PlayerController {
     public String registerPage() {
         return "register";
     }
-
 }

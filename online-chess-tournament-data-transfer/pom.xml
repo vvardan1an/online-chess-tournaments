@@ -14,5 +14,12 @@
     <properties>
         <java.version>11</java.version>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.2.5.Final</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -7,17 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrganizerRequest {
-
-    // TODO: 12/8/2022 validate fields;
-
-    private String name;
-
-    private String surname;
-
-    private String nationality;
-
-    private int age;
+public class OrganizerAuthRequest {
 
     private String email;
 

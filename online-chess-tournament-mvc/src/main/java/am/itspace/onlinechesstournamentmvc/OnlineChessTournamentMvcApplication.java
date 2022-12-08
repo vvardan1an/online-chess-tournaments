@@ -15,5 +15,4 @@ public class OnlineChessTournamentMvcApplication {
     public static void main(String[] args) {
         SpringApplication.run(OnlineChessTournamentMvcApplication.class, args);
     }
-
 }

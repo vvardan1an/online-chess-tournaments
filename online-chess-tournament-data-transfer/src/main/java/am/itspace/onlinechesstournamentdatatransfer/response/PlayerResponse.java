@@ -1,13 +1,14 @@
 package am.itspace.onlinechesstournamentdatatransfer.response;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.Title;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlayerResponse {
@@ -20,10 +21,9 @@ public class PlayerResponse {
     private int fideRating;
     private int nationalRating;
     private Title title;
-    private String picture;
     private String email;
-    private String password;
     private List<TournamentDto> playerList;
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
