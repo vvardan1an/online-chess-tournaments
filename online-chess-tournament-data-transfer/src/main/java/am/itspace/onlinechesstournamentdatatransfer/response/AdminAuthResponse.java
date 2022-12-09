@@ -2,17 +2,13 @@ package am.itspace.onlinechesstournamentdatatransfer.response;
 
 import lombok.*;
 
-// TODO: 12/7/2022 normalize annotations
-
-@Getter
-@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PlayerAuthResponse {
+public class AdminAuthResponse {
 
     private String token;
 
-    private PlayerResponse player;
+    private AdminResponse admin;
 }

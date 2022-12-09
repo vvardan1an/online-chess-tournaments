@@ -1,16 +1,15 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
-import am.itspace.onlinechesstournamentcommon.entity.Player;
 import am.itspace.onlinechesstournamentcommon.mapper.PlayerMapper;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
-import am.itspace.onlinechesstournamentdatatransfer.request.PlayerAuthRequest;
 import am.itspace.onlinechesstournamentdatatransfer.request.PlayerRequest;
-import am.itspace.onlinechesstournamentdatatransfer.response.PlayerAuthResponse;
 import am.itspace.onlinechesstournamentrest.security.jwtAuth.JwtTokenUtil;
+import am.itspace.onlinechesstournamentrest.util.AuthUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,27 +33,15 @@ public class PlayerEndpoint {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final AuthUtil authUtil;
+
+    @PreAuthorize("isAnonymous()")
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody @Valid PlayerRequest playerRequest) {
-        if (playerService.findByEmail(playerRequest.getEmail()) != null || organizerService.findByEmail(playerRequest.getEmail()) != null) {
+        if (authUtil.hasEmailConflict(playerRequest.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-
         playerRequest.setPassword(passwordEncoder.encode(playerRequest.getPassword()));
         return ResponseEntity.status(HttpStatus.CREATED).body(playerMapper.toResponse(playerService.save(playerRequest)));
-    }
-
-    @PostMapping("/auth")
-    public ResponseEntity<PlayerAuthResponse> auth(@RequestBody PlayerAuthRequest playerAuthRequest) {
-        Player player;
-
-        if ((player = playerService.findByEmail(playerAuthRequest.getEmail())) == null ||
-                !passwordEncoder.matches(playerAuthRequest.getPassword(), player.getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(PlayerAuthResponse.builder()
-                .token(jwtTokenUtil.generateToken(playerAuthRequest.getEmail()))
-                .user(playerMapper.toResponse(playerService.findByEmail(playerAuthRequest.getEmail()))).build());
     }
 }
