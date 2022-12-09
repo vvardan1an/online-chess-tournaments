@@ -210,20 +210,10 @@
         </createTable>
         <!-- player_tournament table-->
 
-
-        <!-- create user table-->
-        <createTable tableName="user">
-
+        <!-- create admin table-->
+        <createTable tableName="admin">
             <column name="id" type="int" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
-            </column>
-
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="surname" type="varchar(255)">
-                <constraints nullable="false"/>
             </column>
 
             <column name="email" type="varchar(255)">
@@ -233,17 +223,8 @@
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-
-            <column name="role" type="enum('PLAYER', 'ORGANIZER', 'ADMIN')">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="player_id" type="int"/>
-            <column name="organizer_id" type="int"/>
-
         </createTable>
-        <!-- create user table-->
-
+        <!-- player_tournament table-->
 
     </changeSet>
 

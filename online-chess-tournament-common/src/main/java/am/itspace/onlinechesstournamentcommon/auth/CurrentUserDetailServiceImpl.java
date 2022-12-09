@@ -1,9 +1,11 @@
 package am.itspace.onlinechesstournamentcommon.auth;
 
+import am.itspace.onlinechesstournamentcommon.entity.Admin;
 import am.itspace.onlinechesstournamentcommon.entity.Organizer;
 import am.itspace.onlinechesstournamentcommon.entity.Player;
 import am.itspace.onlinechesstournamentcommon.entity.UserType;
 import am.itspace.onlinechesstournamentcommon.exception.UserNotFoundException;
+import am.itspace.onlinechesstournamentcommon.service.AdminService;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,8 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
     private final OrganizerService organizerService;
 
     private final PlayerService playerService;
+
+    private final AdminService adminService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -49,8 +53,21 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
                 username = player.getEmail();
                 password = player.getPassword();
                 userType = UserType.PLAYER;
+                isCheckedRepository = false;
             } catch (UserNotFoundException ex) {
                 log.info("cannot find player with username {}", username);
+            }
+        }
+
+        if (isCheckedRepository) {
+            try {
+                log.info("starting search process for 'ADMIN' in admin repository...");
+                Admin admin = adminService.findByEmail(email);
+                username = admin.getEmail();
+                password = admin.getPassword();
+                userType = UserType.ADMIN;
+            } catch (UserNotFoundException ex) {
+                log.info("cannot find admin with username {}", username);
             }
         }
 
