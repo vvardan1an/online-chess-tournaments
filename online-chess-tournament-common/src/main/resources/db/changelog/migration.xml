@@ -6,6 +6,65 @@
 
     <changeSet author="hmanukyan" id="insertData">
 
+        <!-- create tournament table-->
+        <createTable tableName="tournament">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="is_rated" type="tinyint(1)" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="is_titled" type="tinyint(1)" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="tournament_system" type="enum('SWISS', 'KNOCK_OUT', 'ROUND_ROBIN')">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="min_age_restriction" type="int"/>
+            <column name="max_age_restriction" type="int"/>
+            <column name="min_rating_restriction" type="int"/>
+            <column name="max_rating_restriction" type="int"/>
+
+            <column name="start_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="description" type="tinytext"/>
+
+            <column name="participation_entry_deadline" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="round_count" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="end_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="time_control" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="participant_count" type="int"/>
+
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <!-- tournament table-->
+
+
         <!-- create organizer table-->
         <createTable tableName="organizer">
             <column name="id" type="int" autoIncrement="true">
@@ -78,6 +137,7 @@
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+
         </createTable>
         <!-- player table-->
 
@@ -134,70 +194,6 @@
         <!-- world_chess_champion table-->
 
 
-        <!-- create tournament table-->
-        <createTable tableName="tournament">
-            <column name="id" type="int" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="is_rated" type="tinyint(1)" defaultValue="0">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="is_titled" type="tinyint(1)" defaultValue="0">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="tournament_system" type="enum('SWISS', 'KNOCK_OUT', 'ROUND_ROBIN')">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="min_age_restriction" type="int"/>
-            <column name="max_age_restriction" type="int"/>
-            <column name="min_rating_restriction" type="int"/>
-            <column name="max_rating_restriction" type="int"/>
-
-            <column name="start_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="organizer_id" type="int">
-                <constraints nullable="false" foreignKeyName="organizer_id_fk" referencedTableName="organizer"
-                             referencedColumnNames="id"/>
-            </column>
-
-            <column name="description" type="tinytext"/>
-
-            <column name="participation_entry_deadline" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="round_count" type="int">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="end_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="time_control" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="participant_count" type="int"/>
-
-            <column name="type" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-
-        </createTable>
-        <!-- tournament table-->
-
-
         <!-- create player_tournament table-->
         <createTable tableName="player_tournament">
             <column name="player_id" type="int">
@@ -209,6 +205,7 @@
             </column>
         </createTable>
         <!-- player_tournament table-->
+
 
         <!-- create admin table-->
         <createTable tableName="admin">
@@ -226,6 +223,42 @@
         </createTable>
         <!-- player_tournament table-->
 
+
+        <!-- add foreign keys-->
+        <addColumn tableName="organizer">
+            <column name="tournament_id" type="int">
+                <constraints foreignKeyName="fk_tournament_id_organizer" referencedTableName="tournament"
+                             referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+
+        <addColumn tableName="tournament">
+            <column name="organizer_id" type="int">
+                <constraints foreignKeyName="fk_organizer_id_tournament" referencedTableName="organizer"
+                             referencedColumnNames="id"/>
+            </column>
+        </addColumn>
+
+    </changeSet>
+
+    <changeSet id="addTournamentIdInPlayer" author="hmanukyan">
+
+        <addColumn tableName="player">
+            <column name="tournament_id" type="int"/>
+        </addColumn>
+
+    </changeSet>
+
+    <changeSet id="manyToMany" author="hmanukyan">
+        <addForeignKeyConstraint baseTableName="player_tournament" baseColumnNames="player_id"
+                                 constraintName="fk_Player"
+                                 referencedTableName="player"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="player_tournament" baseColumnNames="tournament_id"
+                                 constraintName="fk_Tournament"
+                                 referencedTableName="tournament"
+                                 referencedColumnNames="id"/>
     </changeSet>
 
 </databaseChangeLog>

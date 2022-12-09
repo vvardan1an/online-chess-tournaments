@@ -6,11 +6,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
 @Table(name = "player")
 public class Player {
@@ -41,8 +39,6 @@ public class Player {
     @ManyToMany
     @JoinTable(name = "player_tournament",
             joinColumns = @JoinColumn(name = "tournament_id"),
-            inverseJoinColumns = @JoinColumn(name = "player_id")
-    )
-    @ToString.Exclude
+            inverseJoinColumns = @JoinColumn(name = "player_id"))
     List<Tournament> tournamentList;
 }

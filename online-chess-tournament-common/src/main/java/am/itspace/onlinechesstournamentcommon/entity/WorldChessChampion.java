@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -28,7 +27,7 @@ public class WorldChessChampion {
     private int rating;
     private int peakRating;
     private int worldChampionNumber;
-    @Column(name = "picture_url")
+    //    @Column(name = "picture_url")
     private String picture;
     private String quote;
     private String info;
