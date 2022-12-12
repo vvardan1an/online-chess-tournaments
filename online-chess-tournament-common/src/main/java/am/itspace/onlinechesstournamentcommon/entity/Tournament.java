@@ -37,6 +37,10 @@ public class Tournament {
     private String timeControl;
     private int participantCount;
     private String type;
+
+    @ManyToOne
+    @JoinColumn(name="organizer_id")
+    private Organizer organizer;
     @ManyToMany
     @JoinTable(
             name = "player_tournament",

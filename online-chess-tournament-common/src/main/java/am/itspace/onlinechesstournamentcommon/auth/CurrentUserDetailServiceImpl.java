@@ -4,7 +4,6 @@ import am.itspace.onlinechesstournamentcommon.entity.Admin;
 import am.itspace.onlinechesstournamentcommon.entity.Organizer;
 import am.itspace.onlinechesstournamentcommon.entity.Player;
 import am.itspace.onlinechesstournamentcommon.entity.UserType;
-import am.itspace.onlinechesstournamentcommon.exception.UserNotFoundException;
 import am.itspace.onlinechesstournamentcommon.service.AdminService;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
@@ -41,7 +40,7 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
             username = organizer.getEmail();
             password = organizer.getPassword();
             userType = UserType.ORGANIZER;
-        } catch (UserNotFoundException ex) {
+        } catch (NullPointerException ex) {
             log.info("cannot find organizer with email '{}'", email);
             isCheckedRepository = true;
         }
@@ -54,7 +53,7 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
                 password = player.getPassword();
                 userType = UserType.PLAYER;
                 isCheckedRepository = false;
-            } catch (UserNotFoundException ex) {
+            } catch (NullPointerException ex) {
                 log.info("cannot find player with username {}", username);
             }
         }
@@ -66,7 +65,7 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
                 username = admin.getEmail();
                 password = admin.getPassword();
                 userType = UserType.ADMIN;
-            } catch (UserNotFoundException ex) {
+            } catch (NullPointerException ex) {
                 log.info("cannot find admin with username {}", username);
             }
         }

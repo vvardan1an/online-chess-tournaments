@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-//@Table(name = "organizer")
+@Table(name = "organizer")
 public class Organizer {
 
     @Id
@@ -32,6 +32,6 @@ public class Organizer {
 
     private String password;
 
-    @OneToMany
+    @OneToMany(mappedBy="organizer")
     private List<Tournament> tournamentList;
 }
