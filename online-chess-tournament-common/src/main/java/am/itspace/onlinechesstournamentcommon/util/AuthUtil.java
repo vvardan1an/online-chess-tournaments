@@ -1,4 +1,4 @@
-package am.itspace.onlinechesstournamentrest.util;
+package am.itspace.onlinechesstournamentcommon.util;
 
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;

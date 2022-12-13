@@ -18,22 +18,18 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TournamentRequest {
+public class UpdateTournamentRequest {
 
     @NotBlank(message = "cannot input blank value into 'name' field")
     @Size(min = 2, message = "tournament name cannot be less than two symbols")
     private String name;
 
-    @NotNull(message = "field 'isRated' cannot be null")
     private boolean isRated;
 
-    @NotNull(message = "field 'isTitled' cannot be null")
     private boolean isTitled;
 
-    @NotNull(message = "field 'tournamentSystem' cannot be null")
     private TournamentSystem tournamentSystem;
 
-    @NotNull(message = "field 'roundCount' cannot be null")
     private int roundCount;
 
     private int minAgeRestriction;
@@ -44,7 +40,6 @@ public class TournamentRequest {
 
     private int maxRatingRestriction;
 
-    @NotNull(message = "field 'startDate' cannot be null")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
@@ -52,23 +47,19 @@ public class TournamentRequest {
 
     private String description;
 
-    @NotNull(message = "field 'participationEntryDeadline' cannot be null")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime participationEntryDeadline;
 
-    @NotNull(message = "field 'endDate' cannot be null")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime endDate;
 
-    @NotNull(message = "field 'timeControl' cannot be null")
     @NotBlank(message = "cannot input blank value into 'timeControl' field")
     private String timeControl;
 
-    @NotNull(message = "field 'type' cannot be null")
     @NotBlank(message = "cannot input blank value into 'type' field")
     private String type;
 }

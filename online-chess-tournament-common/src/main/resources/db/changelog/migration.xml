@@ -126,7 +126,7 @@
 
             <column name="national_rating" type="int"/>
 
-            <column name="title" type="enum('UNTITLED', 'NM', 'CM', 'IM', 'GM')">
+            <column name="title" type="enum('UNTITLED', 'NM', 'CM', 'FM', 'IM', 'GM')">
                 <constraints nullable="false"/>
             </column>
 
@@ -197,11 +197,11 @@
         <!-- create player_tournament table-->
         <createTable tableName="player_tournament">
             <column name="player_id" type="int">
-                <constraints nullable="false" primaryKey="true"/>
+                <constraints nullable="false"/>
             </column>
 
             <column name="tournament_id" type="int">
-                <constraints nullable="false" primaryKey="true"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
         <!-- player_tournament table-->
@@ -225,26 +225,11 @@
 
 
         <!-- add foreign keys-->
-        <addColumn tableName="organizer">
-            <column name="tournament_id" type="int">
-                <constraints foreignKeyName="fk_tournament_id_organizer" referencedTableName="tournament"
-                             referencedColumnNames="id"/>
-            </column>
-        </addColumn>
-
         <addColumn tableName="tournament">
             <column name="organizer_id" type="int">
                 <constraints foreignKeyName="fk_organizer_id_tournament" referencedTableName="organizer"
                              referencedColumnNames="id"/>
             </column>
-        </addColumn>
-
-    </changeSet>
-
-    <changeSet id="addTournamentIdInPlayer" author="hmanukyan">
-
-        <addColumn tableName="player">
-            <column name="tournament_id" type="int"/>
         </addColumn>
 
     </changeSet>

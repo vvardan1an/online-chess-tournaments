@@ -2,6 +2,7 @@ package am.itspace.onlinechesstournamentcommon.mapper;
 
 import am.itspace.onlinechesstournamentcommon.entity.Tournament;
 import am.itspace.onlinechesstournamentdatatransfer.request.TournamentRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.UpdateTournamentRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.TournamentResponse;import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 public interface TournamentMapper {
 
     Tournament toEntity(TournamentRequest tournamentRequest);
+
+    Tournament toEntity(UpdateTournamentRequest updateTournamentRequest);
 
     TournamentResponse toResponse(Tournament tournament);
 

@@ -22,7 +22,7 @@ public class PlayerResponse {
     private int nationalRating;
     private Title title;
     private String email;
-    private List<TournamentDto> playerList;
+    private List<TournamentDto> tournamentList;
 
     @Data
     @AllArgsConstructor

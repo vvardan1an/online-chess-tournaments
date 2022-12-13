@@ -22,8 +22,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final JwtAuthenticationEntryPoint unauthorizedHandler;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().anyRequest().permitAll();

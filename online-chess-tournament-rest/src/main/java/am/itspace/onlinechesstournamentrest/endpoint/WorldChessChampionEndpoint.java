@@ -1,6 +1,5 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
-import am.itspace.onlinechesstournamentcommon.auth.CurrentUser;
 import am.itspace.onlinechesstournamentcommon.mapper.WorldChessChampionMapper;
 import am.itspace.onlinechesstournamentcommon.service.WorldChessChampionService;
 import am.itspace.onlinechesstournamentdatatransfer.request.UpdateWccRequest;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +31,7 @@ public class WorldChessChampionEndpoint {
 
     @GetMapping
     public ResponseEntity<List<WccResponse>> getAll(@PageableDefault(sort = "worldChampionNumber",
-            direction = Sort.Direction.ASC) Pageable pageable, @AuthenticationPrincipal CurrentUser currentUser) {
-        log.debug(currentUser.getUsername() + currentUser.getAuthorities());
+            direction = Sort.Direction.ASC) Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(wccMapper.toResponseList(wccService.findAll(pageable)));
     }
 
