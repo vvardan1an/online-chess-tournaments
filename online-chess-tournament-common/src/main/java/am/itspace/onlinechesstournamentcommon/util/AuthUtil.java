@@ -1,5 +1,6 @@
 package am.itspace.onlinechesstournamentcommon.util;
 
+import am.itspace.onlinechesstournamentcommon.exception.UserNotFoundException;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,7 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
+import am.itspace.onlinechesstournamentdatatransfer.response.OrganizerResponse;
 import am.itspace.onlinechesstournamentdatatransfer.response.PlayerResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,4 +32,21 @@ public class AdminEndpoint {
     public ResponseEntity<List<PlayerResponse>> getAllPlayers() {
         return ResponseEntity.ok(playerService.findAll());
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/deleteOrganizerById/{id}")
+    public ResponseEntity<?> deleteOrganizerById(@PathVariable("id") int id) {
+        if (organizerService.deleteById(id)) {
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Organizer not found by id: " + id);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAllOrganizers")
+    public ResponseEntity<List<OrganizerResponse>> getAllOrganizers() {
+        return ResponseEntity.ok(organizerService.findAll());
+    }
+
+
 }
