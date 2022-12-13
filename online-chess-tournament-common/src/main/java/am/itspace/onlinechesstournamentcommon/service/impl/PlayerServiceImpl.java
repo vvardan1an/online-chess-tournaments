@@ -29,7 +29,9 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player save(PlayerRequest playerRequest) {
-        return playerRepository.save(playerMapper.toEntity(playerRequest));
+        Player player = playerMapper.toEntity(playerRequest);
+        playerRepository.save(player);
+        return player;
     }
 
     @Override

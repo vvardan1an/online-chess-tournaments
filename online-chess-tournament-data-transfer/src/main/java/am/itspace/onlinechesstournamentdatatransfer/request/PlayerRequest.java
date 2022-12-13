@@ -1,49 +1,53 @@
 package am.itspace.onlinechesstournamentdatatransfer.request;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.Title;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class PlayerRequest {
 
-    // TODO: 12/8/2022 validate all fields;
-
     @Size(min = 2)
+    @NotNull(message = "field 'name' cannot be null")
+    @NotBlank(message = "parsing failed...cannot be blank")
     private String name;
 
     @Size(min = 2)
+    @NotNull(message = "field 'surname' cannot be null")
+    @NotBlank(message = "parsing failed...cannot be blank")
     private String surname;
 
     @NotBlank
+    @NotNull(message = "field 'nationality' cannot be null")
+    @NotBlank(message = "parsing failed...cannot be blank")
     private String nationality;
 
     @Positive(message = "cannot input negative number into 'age' field")
-    @Max(110)
+    @NotNull
+    @Max(100)
     private int age;
 
     @Positive(message = "cannot input negative number into 'fideRating' field")
+    @NotNull
     private int fideRating;
 
-    @Positive(message = "cannot input negative number into 'nationalRating' field")
+    @Positive
     private int nationalRating;
 
+    @NotNull(message = "field 'title' cannot be null")
     private Title title;
 
-    @NotBlank
+    @NotNull(message = "field 'email' cannot be null")
+    @NotBlank(message = "parsing failed...cannot be blank")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "parsing failed...cannot be blank")
     @Size(min = 4, max = 18)
+    @NotNull(message = "field 'password' cannot be null")
     private String password;
 }

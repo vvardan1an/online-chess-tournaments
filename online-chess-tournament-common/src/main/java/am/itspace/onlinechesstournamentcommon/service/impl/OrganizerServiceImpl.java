@@ -1,18 +1,13 @@
 package am.itspace.onlinechesstournamentcommon.service.impl;
 
 import am.itspace.onlinechesstournamentcommon.entity.Organizer;
-import am.itspace.onlinechesstournamentcommon.entity.Player;
-import am.itspace.onlinechesstournamentcommon.exception.UserNotFoundException;
 import am.itspace.onlinechesstournamentcommon.mapper.OrganizerMapper;
 import am.itspace.onlinechesstournamentcommon.repository.OrganizerRepository;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentdatatransfer.request.OrganizerRequest;
-import am.itspace.onlinechesstournamentdatatransfer.request.PlayerRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Slf4j
 @Service

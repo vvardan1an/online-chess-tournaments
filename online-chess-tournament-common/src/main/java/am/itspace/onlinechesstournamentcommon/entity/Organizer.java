@@ -1,19 +1,17 @@
 package am.itspace.onlinechesstournamentcommon.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-//@Table(name = "organizer")
+@Table(name = "organizer")
 public class Organizer {
 
     @Id
@@ -31,7 +29,4 @@ public class Organizer {
     private String email;
 
     private String password;
-
-    @OneToMany
-    private List<Tournament> tournamentList;
 }

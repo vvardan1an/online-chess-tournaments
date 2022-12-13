@@ -6,7 +6,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -38,7 +40,8 @@ public class Player {
 
     @ManyToMany
     @JoinTable(name = "player_tournament",
-            joinColumns = @JoinColumn(name = "tournament_id"),
-            inverseJoinColumns = @JoinColumn(name = "player_id"))
-    List<Tournament> tournamentList;
+            joinColumns = @JoinColumn(name = "player_id"),
+            inverseJoinColumns = @JoinColumn(name = "tournament_id"))
+    @ToString.Exclude
+    private List<Tournament> tournamentList;
 }

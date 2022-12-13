@@ -25,6 +25,7 @@ public class WccRequest {
     private String surname;
 
     private LocalDate birth_date;
+
     private LocalDate died;
 
     @NotBlank
@@ -34,10 +35,12 @@ public class WccRequest {
     private String federation;
 
     private int rating;
+
     private int peakRating;
 
     @Min(value = 1)
     private int worldChampionNumber;
+
     private String picture;
 
     @NotBlank
@@ -47,6 +50,8 @@ public class WccRequest {
     private String info;
 
     private int blitzRating;
+
     private int rapidRating;
+
     private String title;
 }

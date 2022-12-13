@@ -31,6 +31,7 @@ public class TournamentResponse {
     private int participantCount;
     private String type;
     private List<PlayerDto> playerList;
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
