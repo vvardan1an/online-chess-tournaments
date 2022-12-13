@@ -1,5 +1,6 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
+import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
 import am.itspace.onlinechesstournamentdatatransfer.response.OrganizerResponse;
 import am.itspace.onlinechesstournamentdatatransfer.response.PlayerResponse;
@@ -17,6 +18,8 @@ import java.util.List;
 public class AdminEndpoint {
 
     private final PlayerService playerService;
+
+    private final OrganizerService organizerService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/deletePlayerById/{id}")
@@ -47,6 +50,4 @@ public class AdminEndpoint {
     public ResponseEntity<List<OrganizerResponse>> getAllOrganizers() {
         return ResponseEntity.ok(organizerService.findAll());
     }
-
-
 }
