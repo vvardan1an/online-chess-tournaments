@@ -1,5 +1,6 @@
-package am.itspace.onlinechesstournamentrest.endpoint;
+package am.itspace.onlinechesstournamentrest.facade.facadeImpl;
 
+import am.itspace.onlinechesstournamentcommon.auth.CurrentUser;
 import am.itspace.onlinechesstournamentcommon.mapper.AdminMapper;
 import am.itspace.onlinechesstournamentcommon.mapper.OrganizerMapper;
 import am.itspace.onlinechesstournamentcommon.mapper.PlayerMapper;
@@ -10,20 +11,20 @@ import am.itspace.onlinechesstournamentdatatransfer.request.LoginRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.AdminAuthResponse;
 import am.itspace.onlinechesstournamentdatatransfer.response.OrganizerAuthResponse;
 import am.itspace.onlinechesstournamentdatatransfer.response.PlayerAuthResponse;
+import am.itspace.onlinechesstournamentrest.facade.LoginLogoutFacade;
 import am.itspace.onlinechesstournamentrest.security.jwtAuth.JwtTokenUtil;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
 
-@RestController
-@RequestMapping("/auth")
-@RequiredArgsConstructor
-public class LoginEndpoint {
+@Slf4j
+@AllArgsConstructor
+@Component
+public class LoginLogoutFacadeImpl implements LoginLogoutFacade {
 
     private final OrganizerService organizerService;
     private final PlayerService playerService;
@@ -34,11 +35,10 @@ public class LoginEndpoint {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtil jwtTokenUtil;
 
-    @PostMapping
-    public ResponseEntity<?> auth(@RequestBody LoginRequest loginRequest) {
+    @Override
+    public ResponseEntity<?> login(LoginRequest loginRequest) {
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
-
         if (organizerService.findByEmail(email) != null &&
                 passwordEncoder.matches(password, organizerService.findByEmail(email).getPassword())) {
             return ResponseEntity.status(HttpStatus.OK).body(OrganizerAuthResponse.builder()
@@ -46,7 +46,6 @@ public class LoginEndpoint {
                     .organizer(organizerMapper.toResponse(organizerService.findByEmail(email)))
                     .build());
         }
-
         if (playerService.findByEmail(email) != null &&
                 passwordEncoder.matches(password, playerService.findByEmail(email).getPassword())) {
             return ResponseEntity.status(HttpStatus.OK).body(PlayerAuthResponse.builder()
@@ -54,7 +53,6 @@ public class LoginEndpoint {
                     .player(playerMapper.toResponse(playerService.findByEmail(email)))
                     .build());
         }
-
         if (adminService.findByEmail(email) != null &&
                 passwordEncoder.matches(password, adminService.findByEmail(email).getPassword())) {
             return ResponseEntity.status(HttpStatus.OK).body(AdminAuthResponse.builder()
@@ -63,5 +61,13 @@ public class LoginEndpoint {
                     .build());
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+    @Override
+    public ResponseEntity<?> logout(CurrentUser currentUser) {
+        log.info("starting SecurityContextHolder cleanup process...");
+        SecurityContextHolder.clearContext();
+        return ResponseEntity.status(HttpStatus.OK).body(
+                currentUser.getUsername() + " has logged out.");
     }
 }

@@ -1,8 +1,6 @@
 package am.itspace.onlinechesstournamentcommon.service.impl;
 
 import am.itspace.onlinechesstournamentcommon.entity.Organizer;
-import am.itspace.onlinechesstournamentcommon.entity.Player;
-import am.itspace.onlinechesstournamentcommon.exception.UserNotFoundException;
 import am.itspace.onlinechesstournamentcommon.mapper.OrganizerMapper;
 import am.itspace.onlinechesstournamentcommon.repository.OrganizerRepository;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;

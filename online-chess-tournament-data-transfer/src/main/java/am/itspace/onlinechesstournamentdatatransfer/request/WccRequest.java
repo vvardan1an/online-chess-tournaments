@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,7 +36,6 @@ public class WccRequest {
     private String federation;
     @NotNull(message = "Rating cannot be null")
     private int rating;
-    @NotNull(message = "Peak rating cannot be null")
     private int peakRating;
 
     @NotNull(message = "Number cannot be null")
@@ -50,7 +50,8 @@ public class WccRequest {
     private String info;
 
     private int blitzRating;
+
     private int rapidRating;
-    @NotBlank(message = "Title cannot be null")
+
     private String title;
 }

@@ -1,6 +1,6 @@
 package am.itspace.onlinechesstournamentrest.exceptionHandler;
 
-import am.itspace.onlinechesstournamentcommon.exception.UserNotFoundException;
+import am.itspace.onlinechesstournamentcommon.exception.TournamentNotFoundException;
 import am.itspace.onlinechesstournamentcommon.exception.WorldChessChampionNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class EntityNotFoundExceptionHandler {
 
-    @ExceptionHandler(value = {WorldChessChampionNotFoundException.class, UserNotFoundException.class})
+    @ExceptionHandler(value = {WorldChessChampionNotFoundException.class, TournamentNotFoundException.class})
     public ResponseEntity<Object> notFoundExceptionHandler(RuntimeException rte) {
         HttpStatus notFound = HttpStatus.NOT_FOUND;
         ApiExceptionResponse apiExceptionResponse = new ApiExceptionResponse(rte.getMessage(),

@@ -5,7 +5,6 @@ import am.itspace.onlinechesstournamentcommon.exception.WorldChessChampionNotFou
 import am.itspace.onlinechesstournamentcommon.mapper.WorldChessChampionMapper;
 import am.itspace.onlinechesstournamentcommon.repository.WorldChessChampionRepository;
 import am.itspace.onlinechesstournamentcommon.service.WorldChessChampionService;
-import am.itspace.onlinechesstournamentcommon.util.IOUtil;
 import am.itspace.onlinechesstournamentdatatransfer.request.UpdateWccRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +26,6 @@ public class WorldChessChampionServiceImpl implements WorldChessChampionService 
     private final WorldChessChampionRepository wccRepository;
 
     private final WorldChessChampionMapper wccMapper;
-
-    private final IOUtil ioUtil;
-
-    public byte[] getPicture(String pngName) throws IOException {
-        return ioUtil.getAllBytesByUrl(wccPicturesPath + pngName + ".png");
-    }
 
     @Override
     public void deleteById(int id) {
