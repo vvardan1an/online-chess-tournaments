@@ -1,14 +1,12 @@
 package am.itspace.onlinechesstournamentcommon.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -32,6 +30,20 @@ public class Organizer {
 
     private String password;
 
-    @OneToMany(mappedBy="organizer")
+    @OneToMany(mappedBy = "organizer")
     private List<Tournament> tournamentList;
+
+    @Override
+    public String toString() {
+        return "Organizer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", tournamentList=" + tournamentList +
+                '}';
+    }
 }
