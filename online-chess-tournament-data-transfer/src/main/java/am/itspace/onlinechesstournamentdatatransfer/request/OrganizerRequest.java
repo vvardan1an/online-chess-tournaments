@@ -1,6 +1,7 @@
 package am.itspace.onlinechesstournamentdatatransfer.request;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class OrganizerRequest {
 
     @NotNull(message = "field 'name' cannot be null")
