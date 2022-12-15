@@ -30,7 +30,7 @@ public class Organizer {
 
     private String password;
 
-    @OneToMany(mappedBy = "organizer")
+    @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
     private List<Tournament> tournamentList;
 
     @Override

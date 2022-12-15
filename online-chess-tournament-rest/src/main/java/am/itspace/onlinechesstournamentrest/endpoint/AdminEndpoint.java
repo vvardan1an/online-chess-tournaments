@@ -4,6 +4,7 @@ import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
 import am.itspace.onlinechesstournamentdatatransfer.response.OrganizerResponse;
 import am.itspace.onlinechesstournamentdatatransfer.response.PlayerResponse;
+import am.itspace.onlinechesstournamentrest.facade.AdminAccessOnly;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +22,12 @@ public class AdminEndpoint {
 
     private final OrganizerService organizerService;
 
+    private final AdminAccessOnly adminAccessOnly;
+
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/deletePlayerById/{id}")
+    @DeleteMapping("/deletePlayer/{id}")
     public ResponseEntity<?> deleteById(@PathVariable("id") int id) {
-        if (playerService.deleteById(id)) {
-            return ResponseEntity.status(HttpStatus.OK).build();
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("player not found by id: " + id);
+        return adminAccessOnly.deletePlayer(id);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -37,12 +37,9 @@ public class AdminEndpoint {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/deleteOrganizerById/{id}")
+    @DeleteMapping("/deleteOrganizer/{id}")
     public ResponseEntity<?> deleteOrganizerById(@PathVariable("id") int id) {
-        if (organizerService.deleteById(id)) {
-            return ResponseEntity.status(HttpStatus.OK).build();
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Organizer not found by id: " + id);
+        return adminAccessOnly.deleteOrganizer(id);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

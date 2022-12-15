@@ -27,7 +27,9 @@ public class OrganizerFacadeImpl implements OrganizerFacade {
 
     @Override
     public ResponseEntity<?> register(OrganizerRequest organizerRequest, BindingResult br) {
-        if (br.hasErrors()) return ResponseEntity.badRequest().body(BindingResultUtil.check(br));
+        if (br.hasErrors()) {
+            return ResponseEntity.badRequest().body(BindingResultUtil.extract(br));
+        }
         if (authUtil.hasEmailConflict(organizerRequest.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("email conflict has occurred");
         }

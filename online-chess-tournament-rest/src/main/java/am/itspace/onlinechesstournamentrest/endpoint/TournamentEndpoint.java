@@ -3,6 +3,8 @@ package am.itspace.onlinechesstournamentrest.endpoint;
 import am.itspace.onlinechesstournamentcommon.auth.CurrentUser;
 import am.itspace.onlinechesstournamentcommon.entity.Player;
 import am.itspace.onlinechesstournamentcommon.entity.Tournament;
+import am.itspace.onlinechesstournamentcommon.exception.TournamentNotFoundException;
+import am.itspace.onlinechesstournamentdatatransfer.response.TournamentResponse;
 import am.itspace.onlinechesstournamentrest.facade.TournamentFacade;
 import am.itspace.onlinechesstournamentcommon.mapper.TournamentMapper;
 import am.itspace.onlinechesstournamentcommon.repository.TournamentRepository;
@@ -30,8 +32,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TournamentEndpoint {
 
-    private final TournamentService tournamentService;
-    private final TournamentMapper tournamentMapper;
     private final TournamentFacade tournamentFacade;
 
     @PreAuthorize("hasAuthority('ORGANIZER')")
@@ -44,7 +44,7 @@ public class TournamentEndpoint {
     }
 
     @PreAuthorize("hasAuthority('ORGANIZER')")
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody
                                     @Valid UpdateTournamentRequest updateRequest,
                                     @PathVariable("id") int id,
@@ -63,14 +63,12 @@ public class TournamentEndpoint {
     @GetMapping
     public ResponseEntity<?> getAll(@PageableDefault(sort = "startDate",
             direction = Sort.Direction.DESC) Pageable pageable) {
-        return ResponseEntity.ok()
-                .body(tournamentMapper.toResponseList(tournamentService.findAll(pageable)));
+        return tournamentFacade.getAll(pageable);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable("id") int id) {
-        return ResponseEntity.status(HttpStatus.FOUND)
-                .body(tournamentMapper.toResponse(tournamentService.getById(id)));
+        return tournamentFacade.getById(id);
     }
 
     @PreAuthorize("hasAuthority('PLAYER')")
@@ -78,5 +76,12 @@ public class TournamentEndpoint {
     public ResponseEntity<?> participate(@PathVariable("id") int tournamentId,
                                          @AuthenticationPrincipal CurrentUser currentUser) {
         return tournamentFacade.signUpForTournament(currentUser, tournamentId);
+    }
+
+    @PreAuthorize("hasAuthority('PLAYER')")
+    @PostMapping("/withdraw/{id}")
+    public ResponseEntity<?> withdraw(@PathVariable("id") int id,
+                                      @AuthenticationPrincipal CurrentUser currentUser) {
+        return tournamentFacade.withdraw(id, currentUser);
     }
 }

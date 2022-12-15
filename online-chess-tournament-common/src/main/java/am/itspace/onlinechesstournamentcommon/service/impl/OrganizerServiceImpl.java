@@ -47,6 +47,5 @@ public class OrganizerServiceImpl implements OrganizerService {
     @Override
     public List<OrganizerResponse> findAll() {
         return organizerMapper.toResponseList(organizerRepository.findAll());
-
     }
 }
