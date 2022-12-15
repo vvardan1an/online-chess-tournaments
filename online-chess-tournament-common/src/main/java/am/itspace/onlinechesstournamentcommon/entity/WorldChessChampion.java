@@ -23,7 +23,7 @@ public class WorldChessChampion {
 
     private String surname;
 
-    private LocalDate birth_date;
+    private LocalDate birthDate;
 
     private LocalDate died;
 
@@ -36,9 +36,6 @@ public class WorldChessChampion {
     private int peakRating;
 
     private int worldChampionNumber;
-
-    @Column(name = "picture_url")
-    private String picture;
 
     private String quote;
 

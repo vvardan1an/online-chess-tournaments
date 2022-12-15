@@ -9,5 +9,4 @@ import org.springframework.validation.BindingResult;
 public interface OrganizerFacade {
 
     ResponseEntity<?> register(OrganizerRequest organizerRequest, BindingResult br);
-
 }

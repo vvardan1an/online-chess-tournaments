@@ -1,14 +1,17 @@
 package am.itspace.onlinechesstournamentdatatransfer.request;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
+
+/**
+ * public class UpdateWccRequest;
+ * Request DTO
+ * used for updating worldChessChampion;
+ */
 
 @Data
 @AllArgsConstructor
@@ -16,36 +19,39 @@ import java.time.LocalDate;
 public class UpdateWccRequest {
 
     @Size(min = 2, max = 30)
-    @NotBlank
+    @NotBlank(message = "name cannot be null")
     private String name;
 
     @Size(min = 2, max = 30)
-    @NotBlank
+    @NotBlank(message = "surname cannot be null")
     private String surname;
 
-    private LocalDate birth_date;
+    @NotNull(message = "Birth date cannot be null")
+    private LocalDate birthDate;
+
     private LocalDate died;
 
-    @NotBlank
+    @NotBlank(message = "city/country cannot be null")
     private String cityCountry;
 
-    @NotBlank
+    @NotBlank(message = "federation cannot be null")
     private String federation;
 
     private int rating;
+
+    @Positive
     private int peakRating;
 
     @Min(value = 1)
     private int worldChampionNumber;
-    private String picture;
 
-    @NotBlank
     private String quote;
 
-    @NotBlank
     private String info;
 
     private int blitzRating;
+
     private int rapidRating;
+
     private String title;
 }

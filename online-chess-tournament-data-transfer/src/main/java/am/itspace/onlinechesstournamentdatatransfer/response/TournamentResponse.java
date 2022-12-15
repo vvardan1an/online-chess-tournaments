@@ -24,6 +24,7 @@ public class TournamentResponse {
     private int minRatingRestriction;
     private int maxRatingRestriction;
     private LocalDateTime startDate;
+    private String roundCount;
     private String description;
     private LocalDateTime participationEntryDeadline;
     private LocalDateTime endDate;
@@ -45,6 +46,5 @@ public class TournamentResponse {
         private int fideRating;
         private int nationalRating;
         private Title title;
-        private String picture;
     }
 }

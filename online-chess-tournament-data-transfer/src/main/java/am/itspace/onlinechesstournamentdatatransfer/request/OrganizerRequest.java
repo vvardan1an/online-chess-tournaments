@@ -6,32 +6,35 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+/**
+ * public class OrganizerRequest;
+ * Request DTO
+ * used for Organizer registration;
+ */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrganizerRequest {
 
-    @NotNull(message = "field 'name' cannot be null")
-    @NotBlank(message = "parsing failed...cannot be blank")
+    @NotBlank(message = "field 'name' cannot be null")
     private String name;
 
-    @NotNull(message = "field 'surname' cannot be null")
-    @NotBlank(message = "parsing failed...cannot be blank")
+
+    @NotBlank(message = "field 'surname' cannot be null")
     private String surname;
 
-    @NotNull(message = "field 'nationality' cannot be null")
-    @NotBlank(message = "parsing failed...cannot be blank")
+    @NotBlank(message = "field 'nationality' cannot be null")
     private String nationality;
 
-    @NotNull(message = "field 'age' cannot be null")
+    @Positive
     private int age;
 
-    @NotBlank(message = "parsing failed...cannot be blank")
-    @NotNull(message = "field 'email' cannot be null")
+    @NotBlank(message = "field 'email' cannot be null")
     private String email;
 
-    @NotNull(message = "field 'password' cannot be null")
-    @NotBlank(message = "parsing failed...cannot be blank")
+    @NotBlank(message = "field 'password' cannot be null")
     private String password;
 }

@@ -16,11 +16,11 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="is_rated" type="tinyint(1)" defaultValue="0">
+            <column name="is_rated" type="boolean">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="is_titled" type="tinyint(1)" defaultValue="0">
+            <column name="is_titled" type="boolean">
                 <constraints nullable="false"/>
             </column>
 
@@ -180,10 +180,6 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="picture_url" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-
             <column name="quote" type="varchar(255)"/>
             <column name="info" type="text"/>
             <column name="blitz_rating" type="int"/>
@@ -228,8 +224,8 @@
         <addColumn tableName="tournament">
             <column name="organizer_id" type="int">
                 <constraints foreignKeyName="fk_organizer_id_tournament" referencedTableName="organizer"
-                             referencedColumnNames="id"/>
-            </column>
+                             referencedColumnNames="id" nullable="false"/>
+            </column> 
         </addColumn>
 
     </changeSet>

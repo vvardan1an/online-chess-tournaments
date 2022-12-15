@@ -11,8 +11,6 @@ public interface TournamentService {
 
     boolean isPresent(int id);
 
-    Tournament getById(int id);
-
     void delete(Tournament tournament);
 
     List<Tournament> findAll(Pageable pageable);

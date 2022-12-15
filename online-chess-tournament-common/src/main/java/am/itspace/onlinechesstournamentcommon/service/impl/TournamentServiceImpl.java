@@ -26,11 +26,6 @@ public class TournamentServiceImpl implements TournamentService {
     }
 
     @Override
-    public Tournament getById(int id) {
-        return tournamentRepository.findById(id).get();
-    }
-
-    @Override
     public void delete(Tournament tournament) {
         tournamentRepository.delete(tournament);
     }

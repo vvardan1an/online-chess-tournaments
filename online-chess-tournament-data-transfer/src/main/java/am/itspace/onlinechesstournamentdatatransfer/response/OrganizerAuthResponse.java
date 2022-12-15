@@ -2,6 +2,12 @@ package am.itspace.onlinechesstournamentdatatransfer.response;
 
 import lombok.*;
 
+/**
+ * public class OrganizerAuthResponse;
+ * response DTO
+ * used for returning successfully logged in Organizer with generated token;
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
