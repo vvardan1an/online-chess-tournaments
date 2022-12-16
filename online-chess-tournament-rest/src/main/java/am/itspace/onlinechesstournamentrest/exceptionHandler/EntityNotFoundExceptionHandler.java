@@ -15,12 +15,14 @@ import java.time.ZonedDateTime;
 @ControllerAdvice
 public class EntityNotFoundExceptionHandler {
 
-    @ExceptionHandler(value = {WorldChessChampionNotFoundException.class, TournamentNotFoundException.class,
-            PlayerNotFoundException.class, OrganizerNotFoundException.class})
+    @ExceptionHandler
+            (value = {WorldChessChampionNotFoundException.class,
+                    TournamentNotFoundException.class,
+                    PlayerNotFoundException.class,
+                    OrganizerNotFoundException.class})
     public ResponseEntity<Object> notFoundExceptionHandler(RuntimeException e) {
         HttpStatus notFound = HttpStatus.NOT_FOUND;
-        ApiExceptionResponse apiExceptionResponse = new ApiExceptionResponse(e.getMessage(),
-                notFound,
+        ApiExceptionResponse apiExceptionResponse = new ApiExceptionResponse(e.getMessage(), notFound,
                 ZonedDateTime.now(ZoneId.of("Z")));
         return new ResponseEntity<>(apiExceptionResponse, notFound);
     }

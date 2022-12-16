@@ -18,5 +18,5 @@ public interface WorldChessChampionService {
 
     WorldChessChampion save(WorldChessChampion wcc);
 
-    int delete(int id);
+    boolean existsById(int id);
 }

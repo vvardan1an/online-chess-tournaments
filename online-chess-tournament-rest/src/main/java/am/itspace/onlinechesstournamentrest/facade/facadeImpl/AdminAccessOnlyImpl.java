@@ -2,6 +2,7 @@ package am.itspace.onlinechesstournamentrest.facade.facadeImpl;
 
 import am.itspace.onlinechesstournamentcommon.exception.OrganizerNotFoundException;
 import am.itspace.onlinechesstournamentcommon.exception.PlayerNotFoundException;
+import am.itspace.onlinechesstournamentcommon.exception.WorldChessChampionNotFoundException;
 import am.itspace.onlinechesstournamentcommon.mapper.WorldChessChampionMapper;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
@@ -33,21 +34,25 @@ public class AdminAccessOnlyImpl implements AdminAccessOnly {
     @Override
     public ResponseEntity<?> deletePlayer(int id) {
         log.info("attempt to delete player by id {}", id);
-        if (playerService.deleteById(id)) {
-            return ResponseEntity.status(HttpStatus.OK).build();
+        if (!playerService.existsById(id)) {
+            log.error("cannot find player by id {}", id);
+            throw new PlayerNotFoundException("player with id " + id + " does not exist");
         }
-        log.error("cannot find player by id {}", id);
-        throw new PlayerNotFoundException("player with id " + id + " does not exist");
+        playerService.deleteById(id);
+        log.info("player by id {} has been deleted", id);
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<?> deleteOrganizer(int id) {
         log.info("attempt to delete organizer by id {}...", id);
-        if (organizerService.deleteById(id)) {
-            return ResponseEntity.status(HttpStatus.OK).build();
+        if (!organizerService.existsById(id)) {
+            log.error("cannot find organizer by id {}", id);
+            throw new OrganizerNotFoundException("organizer with id " + id + " does not exist");
         }
-        log.error("cannot find organizer by id {}", id);
-        throw new OrganizerNotFoundException("organizer with id " + id + " does not exist");
+        organizerService.deleteById(id);
+        log.info("organizer by id {} has been deleted", id);
+        return ResponseEntity.ok().build();
     }
 
     @Override
@@ -68,6 +73,11 @@ public class AdminAccessOnlyImpl implements AdminAccessOnly {
 
     @Override
     public ResponseEntity<?> deleteWorldChessChampion(int id) {
-        return ResponseEntity.ok(wccService.delete(id));
+        if (!wccService.existsById(id)) {
+            log.error("cannot find WorldChessChampion by id {}", id);
+            throw new WorldChessChampionNotFoundException("WorldChessChampion with id " + id + " does not exist");
+        }
+        wccService.deleteById(id);
+        return ResponseEntity.ok().body("WorldChessChampion by id " + id + " was deleted.");
     }
 }

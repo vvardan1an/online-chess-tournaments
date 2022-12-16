@@ -17,7 +17,5 @@ public interface WorldChessChampionMapper {
 
     WccResponse toResponse(WorldChessChampion worldChessChampion);
 
-    List<WorldChessChampion> toEntityList(List<WccRequest> wccRequestList);
-
     List<WccResponse> toResponseList(List<WorldChessChampion> worldChessChampionList);
 }

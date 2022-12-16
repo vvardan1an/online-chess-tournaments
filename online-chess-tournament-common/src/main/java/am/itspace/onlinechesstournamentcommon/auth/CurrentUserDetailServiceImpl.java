@@ -9,7 +9,6 @@ import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,7 +34,7 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
         UserType userType = null;
 
         try {
-            log.info("starting search process for 'ORGANIZER' type user in organizer repository...");
+            log.info("starting search process for 'ORGANIZER' type user in organizer repository by email {}", email);
             Organizer organizer = organizerService.findByEmail(email);
             username = organizer.getEmail();
             password = organizer.getPassword();
@@ -47,7 +46,7 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
 
         if (isCheckedRepository) {
             try {
-                log.info("starting search process for 'PLAYER' type user in player repository...");
+                log.info("starting search process for 'PLAYER' type user in player repository by email {}", email);
                 Player player = playerService.findByEmail(email);
                 username = player.getEmail();
                 password = player.getPassword();
@@ -60,7 +59,7 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
 
         if (isCheckedRepository) {
             try {
-                log.info("starting search process for 'ADMIN' in admin repository...");
+                log.info("starting search process for 'ADMIN' in admin repository by email {}", email);
                 Admin admin = adminService.findByEmail(email);
                 username = admin.getEmail();
                 password = admin.getPassword();
@@ -68,11 +67,6 @@ public class CurrentUserDetailServiceImpl implements UserDetailsService {
             } catch (NullPointerException ex) {
                 log.info("cannot find admin with username {}", username);
             }
-        }
-
-        if (password == null) {
-            log.error("password is null");
-            throw new BadCredentialsException("password cannot be null");
         }
 
         log.info("passing info into 'CurrentUser' constructor...");

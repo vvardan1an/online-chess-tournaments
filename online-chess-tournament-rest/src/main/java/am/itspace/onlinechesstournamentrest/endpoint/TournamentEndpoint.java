@@ -1,22 +1,13 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
 import am.itspace.onlinechesstournamentcommon.auth.CurrentUser;
-import am.itspace.onlinechesstournamentcommon.entity.Player;
-import am.itspace.onlinechesstournamentcommon.entity.Tournament;
-import am.itspace.onlinechesstournamentcommon.exception.TournamentNotFoundException;
-import am.itspace.onlinechesstournamentdatatransfer.response.TournamentResponse;
-import am.itspace.onlinechesstournamentrest.facade.TournamentFacade;
-import am.itspace.onlinechesstournamentcommon.mapper.TournamentMapper;
-import am.itspace.onlinechesstournamentcommon.repository.TournamentRepository;
-import am.itspace.onlinechesstournamentcommon.service.PlayerService;
-import am.itspace.onlinechesstournamentcommon.service.TournamentService;
 import am.itspace.onlinechesstournamentdatatransfer.request.TournamentRequest;
 import am.itspace.onlinechesstournamentdatatransfer.request.UpdateTournamentRequest;
+import am.itspace.onlinechesstournamentrest.facade.TournamentFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,8 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/tournaments")

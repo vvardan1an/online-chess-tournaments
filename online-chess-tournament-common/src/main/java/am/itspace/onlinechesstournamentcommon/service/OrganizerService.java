@@ -1,13 +1,10 @@
 package am.itspace.onlinechesstournamentcommon.service;
 
 import am.itspace.onlinechesstournamentcommon.entity.Organizer;
-import am.itspace.onlinechesstournamentcommon.entity.Player;
 import am.itspace.onlinechesstournamentdatatransfer.request.OrganizerRequest;
-import am.itspace.onlinechesstournamentdatatransfer.request.PlayerRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.OrganizerResponse;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface OrganizerService {
 
@@ -15,7 +12,11 @@ public interface OrganizerService {
 
     Organizer save(OrganizerRequest organizerRequest);
 
-    boolean deleteById(int id);
+    boolean existsById(int id);
 
     List<OrganizerResponse> findAll();
+
+    void deleteById(int id);
+
+    boolean existsByEmail(String email);
 }

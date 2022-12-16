@@ -225,7 +225,7 @@
             <column name="organizer_id" type="int">
                 <constraints foreignKeyName="fk_organizer_id_tournament" referencedTableName="organizer"
                              referencedColumnNames="id" nullable="false"/>
-            </column> 
+            </column>
         </addColumn>
 
     </changeSet>

@@ -12,6 +12,7 @@ import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
 import am.itspace.onlinechesstournamentcommon.service.TournamentService;
 import am.itspace.onlinechesstournamentcommon.util.BindingResultUtil;
+import am.itspace.onlinechesstournamentdatatransfer.model.TournamentSystem;
 import am.itspace.onlinechesstournamentdatatransfer.request.TournamentRequest;
 import am.itspace.onlinechesstournamentdatatransfer.request.UpdateTournamentRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.TournamentResponse;
@@ -33,8 +34,11 @@ import java.util.List;
 public class TournamentFacadeImpl implements TournamentFacade {
 
     private final TournamentMapper tournamentMapper;
+
     private final OrganizerService organizerService;
+
     private final TournamentService tournamentService;
+
     private final PlayerService playerService;
 
     @Override
@@ -56,25 +60,46 @@ public class TournamentFacadeImpl implements TournamentFacade {
     @Override
     public ResponseEntity<?> update(UpdateTournamentRequest updateRequest, int id,
                                     CurrentUser currentUser, BindingResult br) {
-        DateTimeValidator(updateRequest.getStartDate(),
-                updateRequest.getEndDate(),
-                updateRequest.getParticipationEntryDeadline());
-
         tournamentAvailabilityCheck(id);
         Tournament tournamentById = tournamentService.findById(id);
-        Organizer organizer = tournamentById.getOrganizer();
-        Organizer organizerByEmail = organizerService.findByEmail(currentUser.getUsername());
 
-        if (organizerByEmail.getId() == organizer.getId()) {
+        int organizerIdOfTournament = tournamentById.getOrganizer().getId();
+        Organizer currentOrganizer = organizerService.findByEmail(currentUser.getUsername());
+
+        if (organizerIdOfTournament == currentOrganizer.getId()) {
             if (br.hasErrors()) {
                 return ResponseEntity.unprocessableEntity().body(BindingResultUtil.extract(br));
             }
-            Tournament tournament = tournamentMapper.toEntity(updateRequest);
-            tournament.setId(id);
-            tournament.setOrganizer(organizerService.findByEmail(currentUser.getUsername()));
-            Tournament savedTournament = tournamentService.save(tournament);
+
+            Tournament updatedTournament = Tournament.builder()
+                    .id(id)
+                    .organizer(currentOrganizer)
+                    .name(updateRequest.getName() == null ? tournamentById.getName() : updateRequest.getName())
+                    .tournamentSystem(TournamentSystem.valueOf(updateRequest.getTournamentSystem() == null ?
+                            String.valueOf(tournamentById.getTournamentSystem()) : String.valueOf(updateRequest.getTournamentSystem())))
+                    .isRated(updateRequest.getIsRated() == null ? tournamentById.isRated() : updateRequest.getIsRated())
+                    .isTitled(updateRequest.getIsTitled() == null ? tournamentById.isTitled() : updateRequest.getIsTitled())
+                    .startDate(tournamentById.getStartDate())
+                    .endDate(tournamentById.getEndDate())
+                    .participationEntryDeadline(tournamentById.getParticipationEntryDeadline())
+                    .minAgeRestriction(Integer.parseInt(updateRequest.getMinAgeRestriction() == null ?
+                            String.valueOf(tournamentById.getMinAgeRestriction()) : String.valueOf(updateRequest.getMinAgeRestriction())))
+                    .maxAgeRestriction(Integer.parseInt(updateRequest.getMaxAgeRestriction() == null ?
+                            String.valueOf(tournamentById.getMinAgeRestriction()) : String.valueOf(updateRequest.getMinAgeRestriction())))
+                    .minRatingRestriction(Integer.parseInt(updateRequest.getMinRatingRestriction() == null ?
+                            String.valueOf(tournamentById.getMinRatingRestriction()) : String.valueOf(updateRequest.getMinRatingRestriction())))
+                    .maxRatingRestriction(Integer.parseInt(updateRequest.getMaxRatingRestriction() == null ?
+                            String.valueOf(tournamentById.getMaxRatingRestriction()) : String.valueOf(updateRequest.getMaxRatingRestriction())))
+                    .description(updateRequest.getDescription() == null ? tournamentById.getDescription() : updateRequest.getDescription())
+                    .roundCount(updateRequest.getRoundCount() == null ? tournamentById.getRoundCount() : updateRequest.getRoundCount())
+                    .timeControl(updateRequest.getTimeControl() == null ? tournamentById.getTimeControl() : updateRequest.getTimeControl())
+                    .type(updateRequest.getType() == null ? tournamentById.getType() : updateRequest.getType())
+                    .build();
+
+            Tournament savedTournament = tournamentService.save(updatedTournament);
             return ResponseEntity.ok().body(tournamentMapper.toResponse(savedTournament));
         }
+        log.error("");
         throw new AccessDeniedException("update process failed:" +
                 " current organizer does not have access to tournament by id " + id);
     }
@@ -145,7 +170,6 @@ public class TournamentFacadeImpl implements TournamentFacade {
             return ResponseEntity.badRequest().body(currentUser.getUsername() + " is not signed up for tournament");
         }
 
-        log.info("removing player from playerList");
         tournament.getPlayerList().remove(player);
         tournament.setParticipantCount(tournament.getParticipantCount() - 1);
         tournamentService.save(tournament);
@@ -171,7 +195,6 @@ public class TournamentFacadeImpl implements TournamentFacade {
     }
 
     private void DateTimeValidator(LocalDateTime startDate, LocalDateTime endDate, LocalDateTime participationEntryDeadline) {
-        log.info("validating localDateTime fields of given request...");
         if (!startDate.isAfter(LocalDateTime.now())
                 || !startDate.isBefore(endDate)
                 || !participationEntryDeadline.isBefore(startDate)

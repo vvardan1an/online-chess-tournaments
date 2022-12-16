@@ -12,7 +12,11 @@ public interface PlayerService {
 
     Player save(PlayerRequest playerRequest);
 
-    boolean deleteById(int id);
+    boolean existsById(int id);
 
     List<PlayerResponse> findAll();
+
+    void deleteById(int id);
+
+    boolean existsByEmail(String email);
 }
