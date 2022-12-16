@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**
@@ -19,39 +20,33 @@ import java.time.LocalDate;
 public class UpdateWccRequest {
 
     @Size(min = 2, max = 30)
-    @NotBlank(message = "name cannot be null")
     private String name;
 
     @Size(min = 2, max = 30)
-    @NotBlank(message = "surname cannot be null")
     private String surname;
 
-    @NotNull(message = "Birth date cannot be null")
     private LocalDate birthDate;
 
     private LocalDate died;
 
-    @NotBlank(message = "city/country cannot be null")
     private String cityCountry;
 
-    @NotBlank(message = "federation cannot be null")
     private String federation;
 
-    private int rating;
+    private Integer rating;
 
-    @Positive
-    private int peakRating;
+    private Integer peakRating;
 
     @Min(value = 1)
-    private int worldChampionNumber;
+    private Integer worldChampionNumber;
 
     private String quote;
 
     private String info;
 
-    private int blitzRating;
+    private Integer blitzRating;
 
-    private int rapidRating;
+    private Integer rapidRating;
 
     private String title;
 }

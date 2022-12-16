@@ -14,7 +14,5 @@ public interface PlayerMapper {
 
     PlayerResponse toResponse(Player player);
 
-    List<Player> toEntityList(List<PlayerRequest> playerRequestList);
-
     List<PlayerResponse> toResponseList(List<Player> playerList);
 }

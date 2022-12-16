@@ -1,21 +1,11 @@
 package am.itspace.onlinechesstournamentdatatransfer.request;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.TournamentSystem;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 
 /**
  * public class UpdateTournamentRequest;
@@ -28,72 +18,39 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class UpdateTournamentRequest {
 
-    @NotBlank(message = "cannot input blank value into 'name' field")
     @Size(min = 2, message = "tournament name cannot be less than two symbols")
     private String name;
 
-    @JsonProperty
-    @NotNull(message = "field 'isRated' cannot be null")
-    private boolean isRated;
+    private Boolean isRated;
 
-    @JsonProperty
-    @NotNull(message = "field 'isTitled' cannot be null")
-    private boolean isTitled;
+    private Boolean isTitled;
 
-    @NotNull(message = "field 'tournamentSystem' cannot be null")
     private TournamentSystem tournamentSystem;
 
-    @Positive
-    private int roundCount;
+    private Integer roundCount;
 
-    private int minAgeRestriction;
+    private Integer minAgeRestriction;
 
-    private int maxAgeRestriction;
+    private Integer maxAgeRestriction;
 
-    private int minRatingRestriction;
+    private Integer minRatingRestriction;
 
-    private int maxRatingRestriction;
+    private Integer maxRatingRestriction;
 
-    @NotNull(message = "field 'startDate' cannot be null")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime startDate;
-
+    @Size(min = 10, message = "description cannot be less than ten symbols")
     private String description;
 
-    @NotNull(message = "field 'participationEntryDeadline' cannot be null")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime participationEntryDeadline;
-
-    @NotNull(message = "field 'endDate' cannot be null")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime endDate;
-
-    @NotBlank(message = "field 'timeControl' cannot be null")
+    @Size(min = 1, message = "timeControl cannot be less than one symbol")
     private String timeControl;
 
-    @NotBlank(message = "field 'type' cannot be null")
+    @Size(min = 4, message = "type cannot be less than four symbols")
     private String type;
 
-    /**
-     * generated getters for (isRated, isTitled) fields,
-     * renamed -> getIsRated, getIsTitled
-     * reason behind: ->
-     * while mapping from UpdateTournamentRequest to Tournament entity,
-     * automated map generator impl always gets values of field with 'get + (field name)',
-     * as @Getter provides boolean isRated, boolean isTitled, occurred a need for certain getter methods renaming
-     */
-
-    public boolean getIsRated() {
+    public Boolean getIsRated() {
         return isRated;
     }
 
-    public boolean getIsTitled() {
+    public Boolean getIsTitled() {
         return isTitled;
     }
 }

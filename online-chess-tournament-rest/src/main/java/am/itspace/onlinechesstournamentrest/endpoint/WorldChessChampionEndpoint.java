@@ -1,8 +1,8 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
+import am.itspace.onlinechesstournamentcommon.entity.WorldChessChampion;
 import am.itspace.onlinechesstournamentcommon.mapper.WorldChessChampionMapper;
 import am.itspace.onlinechesstournamentcommon.service.WorldChessChampionService;
-import am.itspace.onlinechesstournamentcommon.util.BindingResultUtil;
 import am.itspace.onlinechesstournamentdatatransfer.request.UpdateWccRequest;
 import am.itspace.onlinechesstournamentdatatransfer.request.WccRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.WccResponse;
@@ -41,7 +41,8 @@ public class WorldChessChampionEndpoint {
 
     @GetMapping("/{id}")
     public ResponseEntity<WccResponse> getById(@PathVariable("id") int id) {
-        return ResponseEntity.status(HttpStatus.FOUND).body(wccMapper.toResponse(wccService.getById(id)));
+        WorldChessChampion byId = wccService.getById(id);
+        return ResponseEntity.status(HttpStatus.FOUND).body(wccMapper.toResponse(byId));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

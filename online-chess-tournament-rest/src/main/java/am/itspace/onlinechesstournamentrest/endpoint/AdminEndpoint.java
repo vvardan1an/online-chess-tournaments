@@ -6,7 +6,6 @@ import am.itspace.onlinechesstournamentdatatransfer.response.OrganizerResponse;
 import am.itspace.onlinechesstournamentdatatransfer.response.PlayerResponse;
 import am.itspace.onlinechesstournamentrest.facade.AdminAccessOnly;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

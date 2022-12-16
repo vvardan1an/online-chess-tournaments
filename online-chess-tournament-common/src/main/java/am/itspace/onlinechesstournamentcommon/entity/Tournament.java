@@ -10,6 +10,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -63,30 +64,6 @@ public class Tournament {
             name = "player_tournament",
             joinColumns = @JoinColumn(name = "tournament_id"),
             inverseJoinColumns = @JoinColumn(name = "player_id"))
+    @ToString.Exclude
     private List<Player> playerList;
-
-    @Override
-    public String toString() {
-        return "Tournament{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", isRated=" + isRated +
-                ", isTitled=" + isTitled +
-                ", tournamentSystem=" + tournamentSystem +
-                ", minAgeRestriction=" + minAgeRestriction +
-                ", maxAgeRestriction=" + maxAgeRestriction +
-                ", minRatingRestriction=" + minRatingRestriction +
-                ", maxRatingRestriction=" + maxRatingRestriction +
-                ", startDate=" + startDate +
-                ", description='" + description + '\'' +
-                ", roundCount=" + roundCount +
-                ", participationEntryDeadline=" + participationEntryDeadline +
-                ", endDate=" + endDate +
-                ", timeControl='" + timeControl + '\'' +
-                ", participantCount=" + participantCount +
-                ", type='" + type + '\'' +
-                ", organizer=" + organizer +
-                ", playerList=" + playerList +
-                '}';
-    }
 }
