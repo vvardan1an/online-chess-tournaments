@@ -2,13 +2,11 @@ package am.itspace.onlinechesstournamentcommon.service.impl;
 
 import am.itspace.onlinechesstournamentcommon.entity.WorldChessChampion;
 import am.itspace.onlinechesstournamentcommon.exception.WorldChessChampionNotFoundException;
-import am.itspace.onlinechesstournamentcommon.mapper.WorldChessChampionMapper;
 import am.itspace.onlinechesstournamentcommon.repository.WorldChessChampionRepository;
 import am.itspace.onlinechesstournamentcommon.service.WorldChessChampionService;
-import am.itspace.onlinechesstournamentdatatransfer.request.UpdateWccRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateWccRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,26 +18,35 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class WorldChessChampionServiceImpl implements WorldChessChampionService {
 
-    @Value("C:\\Users\\Hayk\\IdeaProjects\\online-chess-tournaments\\src\\main\\resources\\static\\worldChampionsPictures\\")
-    private String wccPicturesPath;
-
     private final WorldChessChampionRepository wccRepository;
-
-    private final WorldChessChampionMapper wccMapper;
 
     @Override
     public void deleteById(int id) {
-        log.info("removing 'WorldChessChampion' by id: {}", id);
         wccRepository.deleteById(id);
     }
 
     @Override
-    public WorldChessChampion update(UpdateWccRequest updateWccRequest, int id) {
-        getById(id);
-        WorldChessChampion wcc = wccMapper.toEntity(updateWccRequest);
-        wcc.setId(id);
-        return save(wcc);
+    public WorldChessChampion update(UpdateWccRequest request, int id) {
+        WorldChessChampion wccById = getById(id);
+        return save(WorldChessChampion.builder()
+                .id(id)
+                .name(request.getName() == null ? wccById.getName() : request.getName())
+                .surname(request.getSurname() == null ? wccById.getSurname() : request.getSurname())
+                .birthDate(request.getBirthDate() == null ? wccById.getBirthDate() : request.getBirthDate())
+                .died(request.getDied() == null ? wccById.getDied() : request.getDied())
+                .cityCountry(request.getCityCountry() == null ? wccById.getCityCountry() : request.getCityCountry())
+                .federation(request.getFederation() == null ? wccById.getFederation() : request.getFederation())
+                .rating(request.getRating() == null ? wccById.getRating() : request.getRating())
+                .peakRating(request.getPeakRating() == null ? wccById.getPeakRating() : request.getPeakRating())
+                .worldChampionNumber(request.getWorldChampionNumber() == null ? wccById.getWorldChampionNumber() : request.getWorldChampionNumber())
+                .quote(request.getQuote() == null ? wccById.getQuote() : request.getQuote())
+                .info(request.getInfo() == null ? wccById.getInfo() : request.getInfo())
+                .blitzRating(request.getBlitzRating() == null ? wccById.getBlitzRating() : request.getBlitzRating())
+                .rapidRating(request.getRapidRating() == null ? wccById.getRapidRating() : request.getRapidRating())
+                .title(request.getTitle() == null ? wccById.getTitle() : request.getTitle())
+                .build());
     }
+
 
     @Override
     public List<WorldChessChampion> findAll(Pageable pageable) {
@@ -60,14 +67,11 @@ public class WorldChessChampionServiceImpl implements WorldChessChampionService 
 
     @Override
     public WorldChessChampion save(WorldChessChampion wcc) {
-        log.info("saving 'WorldChessChampion'...");
         return wccRepository.save(wcc);
     }
 
     @Override
-    public int delete(int id) {
-        getById(id);
-        deleteById(id);
-        return id;
+    public boolean existsById(int id) {
+        return wccRepository.existsById(id);
     }
 }

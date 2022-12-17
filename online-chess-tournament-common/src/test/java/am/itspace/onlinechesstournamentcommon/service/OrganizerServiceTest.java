@@ -4,7 +4,6 @@ import am.itspace.onlinechesstournamentcommon.entity.Organizer;
 import am.itspace.onlinechesstournamentcommon.mapper.OrganizerMapper;
 import am.itspace.onlinechesstournamentcommon.repository.OrganizerRepository;
 import am.itspace.onlinechesstournamentcommon.service.impl.OrganizerServiceImpl;
-import am.itspace.onlinechesstournamentdatatransfer.request.OrganizerRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

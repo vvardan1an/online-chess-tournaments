@@ -16,14 +16,13 @@ public class WccResponse {
     private int id;
     private String name;
     private String surname;
-    private LocalDate birth_date;
+    private LocalDate birtDate;
     private LocalDate died;
     private String cityCountry;
     private String federation;
     private int rating;
     private int peakRating;
     private int worldChampionNumber;
-    private String picture;
     private String quote;
     private String info;
     private int blitzRating;

@@ -4,7 +4,7 @@ import am.itspace.onlinechesstournamentcommon.entity.Player;
 import am.itspace.onlinechesstournamentcommon.mapper.PlayerMapper;
 import am.itspace.onlinechesstournamentcommon.repository.PlayerRepository;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
-import am.itspace.onlinechesstournamentdatatransfer.request.PlayerRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest.PlayerRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.PlayerResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,18 +35,22 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public boolean deleteById(int id) {
-        try {
-            playerRepository.deleteById(id);
-            return true;
-        } catch (Exception exception) {
-            log.error("cannot delete player by id {}", id);
-            return false;
-        }
+    public boolean existsById(int id) {
+        return playerRepository.existsById(id);
     }
 
     @Override
     public List<PlayerResponse> findAll() {
         return playerMapper.toResponseList(playerRepository.findAll());
+    }
+
+    @Override
+    public void deleteById(int id) {
+        playerRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return playerRepository.existsByEmail(email);
     }
 }

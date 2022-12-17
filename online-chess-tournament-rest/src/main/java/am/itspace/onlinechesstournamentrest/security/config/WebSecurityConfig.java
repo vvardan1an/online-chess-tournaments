@@ -2,7 +2,6 @@ package am.itspace.onlinechesstournamentrest.security.config;
 
 import am.itspace.onlinechesstournamentcommon.auth.CurrentUserDetailServiceImpl;
 import am.itspace.onlinechesstournamentrest.security.jwtAuth.JWTAuthenticationTokenFilter;
-import am.itspace.onlinechesstournamentrest.security.jwtAuth.JwtAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,4 +39,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JWTAuthenticationTokenFilter();
     }
 }
-

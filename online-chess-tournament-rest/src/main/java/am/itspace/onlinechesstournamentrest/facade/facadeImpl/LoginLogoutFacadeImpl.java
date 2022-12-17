@@ -1,16 +1,19 @@
 package am.itspace.onlinechesstournamentrest.facade.facadeImpl;
 
 import am.itspace.onlinechesstournamentcommon.auth.CurrentUser;
+import am.itspace.onlinechesstournamentcommon.entity.Admin;
+import am.itspace.onlinechesstournamentcommon.entity.Organizer;
+import am.itspace.onlinechesstournamentcommon.entity.Player;
 import am.itspace.onlinechesstournamentcommon.mapper.AdminMapper;
 import am.itspace.onlinechesstournamentcommon.mapper.OrganizerMapper;
 import am.itspace.onlinechesstournamentcommon.mapper.PlayerMapper;
 import am.itspace.onlinechesstournamentcommon.service.AdminService;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
-import am.itspace.onlinechesstournamentdatatransfer.request.LoginRequest;
-import am.itspace.onlinechesstournamentdatatransfer.response.AdminAuthResponse;
-import am.itspace.onlinechesstournamentdatatransfer.response.OrganizerAuthResponse;
-import am.itspace.onlinechesstournamentdatatransfer.response.PlayerAuthResponse;
+import am.itspace.onlinechesstournamentdatatransfer.request.loginRequest.LoginRequest;
+import am.itspace.onlinechesstournamentdatatransfer.response.authResponse.AdminAuthResponse;
+import am.itspace.onlinechesstournamentdatatransfer.response.authResponse.OrganizerAuthResponse;
+import am.itspace.onlinechesstournamentdatatransfer.response.authResponse.PlayerAuthResponse;
 import am.itspace.onlinechesstournamentrest.facade.LoginLogoutFacade;
 import am.itspace.onlinechesstournamentrest.security.jwtAuth.JwtTokenUtil;
 import lombok.AllArgsConstructor;
@@ -39,27 +42,32 @@ public class LoginLogoutFacadeImpl implements LoginLogoutFacade {
     public ResponseEntity<?> login(LoginRequest loginRequest) {
         String email = loginRequest.getEmail();
         String password = loginRequest.getPassword();
-        if (organizerService.findByEmail(email) != null &&
-                passwordEncoder.matches(password, organizerService.findByEmail(email).getPassword())) {
-            return ResponseEntity.status(HttpStatus.OK).body(OrganizerAuthResponse.builder()
+
+        Organizer organizer = organizerService.findByEmail(email);
+        Player player = playerService.findByEmail(email);
+        Admin admin = adminService.findByEmail(email);
+
+        if (organizer != null && passwordEncoder.matches(password, organizer.getPassword())) {
+            return ResponseEntity.ok().body(OrganizerAuthResponse.builder()
                     .token(jwtTokenUtil.generateToken(email))
-                    .organizer(organizerMapper.toResponse(organizerService.findByEmail(email)))
+                    .organizer(organizerMapper.toResponse(organizer))
                     .build());
         }
-        if (playerService.findByEmail(email) != null &&
-                passwordEncoder.matches(password, playerService.findByEmail(email).getPassword())) {
-            return ResponseEntity.status(HttpStatus.OK).body(PlayerAuthResponse.builder()
+
+        if (player != null && passwordEncoder.matches(password, player.getPassword())) {
+            return ResponseEntity.ok().body(PlayerAuthResponse.builder()
                     .token(jwtTokenUtil.generateToken(email))
-                    .player(playerMapper.toResponse(playerService.findByEmail(email)))
+                    .player(playerMapper.toResponse(player))
                     .build());
         }
-        if (adminService.findByEmail(email) != null &&
-                passwordEncoder.matches(password, adminService.findByEmail(email).getPassword())) {
-            return ResponseEntity.status(HttpStatus.OK).body(AdminAuthResponse.builder()
+
+        if (admin != null && passwordEncoder.matches(password, admin.getPassword())) {
+            return ResponseEntity.ok().body(AdminAuthResponse.builder()
                     .token(jwtTokenUtil.generateToken(email))
-                    .admin(adminMapper.toResponse(adminService.findByEmail(email)))
+                    .admin(adminMapper.toResponse(admin))
                     .build());
         }
+
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
@@ -67,7 +75,6 @@ public class LoginLogoutFacadeImpl implements LoginLogoutFacade {
     public ResponseEntity<?> logout(CurrentUser currentUser) {
         log.info("starting SecurityContextHolder cleanup process...");
         SecurityContextHolder.clearContext();
-        return ResponseEntity.status(HttpStatus.OK).body(
-                currentUser.getUsername() + " has logged out.");
+        return ResponseEntity.ok().body(currentUser.getUsername() + " has logged out.");
     }
 }

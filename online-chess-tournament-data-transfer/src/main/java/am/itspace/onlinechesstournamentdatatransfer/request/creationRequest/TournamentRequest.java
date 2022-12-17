@@ -1,7 +1,8 @@
-package am.itspace.onlinechesstournamentdatatransfer.request;
+package am.itspace.onlinechesstournamentdatatransfer.request.creationRequest;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.TournamentSystem;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -15,6 +16,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+/**
+ * DTO used for tournament creation request;
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,9 +29,11 @@ public class TournamentRequest {
     @Size(min = 2, message = "tournament name cannot be less than two symbols")
     private String name;
 
+    @JsonProperty
     @NotNull(message = "field 'isRated' cannot be null")
     private boolean isRated;
 
+    @JsonProperty
     @NotNull(message = "field 'isTitled' cannot be null")
     private boolean isTitled;
 
@@ -64,11 +71,27 @@ public class TournamentRequest {
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime endDate;
 
-    @NotNull(message = "field 'timeControl' cannot be null")
-    @NotBlank(message = "cannot input blank value into 'timeControl' field")
+    @NotBlank(message = "field 'timeControl' cannot be null")
     private String timeControl;
 
-    @NotNull(message = "field 'type' cannot be null")
-    @NotBlank(message = "cannot input blank value into 'type' field")
+    @NotNull
+    @NotBlank(message = "field 'type' cannot be null")
     private String type;
+
+    /**
+     * generated getters for (isRated, isTitled) fields,
+     * renamed -> getIsRated, getIsTitled
+     * reason behind: ->
+     * while mapping from TournamentRequest to Tournament entity,
+     * automated map generator impl always gets values of field with 'get + (field name)',
+     * as @Getter provides boolean isRated, boolean isTitled, occurred a need for certain getter methods renaming
+     */
+
+    public boolean getIsRated() {
+        return isRated;
+    }
+
+    public boolean getIsTitled() {
+        return isTitled;
+    }
 }

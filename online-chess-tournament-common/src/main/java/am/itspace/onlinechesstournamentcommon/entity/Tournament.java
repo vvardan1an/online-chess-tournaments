@@ -9,6 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -39,18 +40,6 @@ public class Tournament {
 
     private LocalDateTime startDate;
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setParticipationEntryDeadline(LocalDateTime participationEntryDeadline) {
-        this.participationEntryDeadline = participationEntryDeadline;
-    }
-
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
     private String description;
 
     private int roundCount;
@@ -65,7 +54,7 @@ public class Tournament {
 
     private String type;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "organizer_id")
     private Organizer organizer;
 
@@ -74,28 +63,6 @@ public class Tournament {
             name = "player_tournament",
             joinColumns = @JoinColumn(name = "tournament_id"),
             inverseJoinColumns = @JoinColumn(name = "player_id"))
+    @ToString.Exclude
     private List<Player> playerList;
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "name = " + name + ", " +
-                "isRated = " + isRated + ", " +
-                "isTitled = " + isTitled + ", " +
-                "tournamentSystem = " + tournamentSystem + ", " +
-                "minAgeRestriction = " + minAgeRestriction + ", " +
-                "maxAgeRestriction = " + maxAgeRestriction + ", " +
-                "minRatingRestriction = " + minRatingRestriction + ", " +
-                "maxRatingRestriction = " + maxRatingRestriction + ", " +
-                "startDate = " + startDate + ", " +
-                "description = " + description + ", " +
-                "roundCount = " + roundCount + ", " +
-                "participationEntryDeadline = " + participationEntryDeadline + ", " +
-                "endDate = " + endDate + ", " +
-                "timeControl = " + timeControl + ", " +
-                "participantCount = " + participantCount + ", " +
-                "type = " + type + ", " +
-                "organizer = " + organizer + ")";
-    }
 }

@@ -31,7 +31,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin findByEmail(String email) {
-        log.info("attempt to get an 'Admin' with email '{}'", email);
+        log.info("attempt to get an 'Admin' with email {}", email);
         return adminRepository.findByEmail(email);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return adminRepository.existsByEmail(email);
     }
 }
