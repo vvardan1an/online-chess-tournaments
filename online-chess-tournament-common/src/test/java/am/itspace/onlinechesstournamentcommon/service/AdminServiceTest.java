@@ -1,7 +1,8 @@
-package am.itspace.onlinechesstournamentcommon.service.impl;
+package am.itspace.onlinechesstournamentcommon.service;
 
 import am.itspace.onlinechesstournamentcommon.entity.Admin;
 import am.itspace.onlinechesstournamentcommon.repository.AdminRepository;
+import am.itspace.onlinechesstournamentcommon.service.impl.AdminServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -42,6 +43,7 @@ class AdminServiceTest {
         //then
         verify(adminRepository, times(0)).save(any(Admin.class));
     }
+
     @Test
     void shouldDoNothing() {
         //given
@@ -56,15 +58,16 @@ class AdminServiceTest {
         verify(adminRepository, times(1)).save(any(Admin.class));
     }
 
-//    @Test
-//    void findByEmailAdmin() {
-//        //given
-//
-//        String email = "admin@mail.ru";
-//
-//        //when
-//        when(adminRepository.findByEmail(email)).thenReturn(admin);
-//        //then
-//        //verify(adminRepository,times(1)).;
-//    }
+    @Test
+    void findByEmailAdmin() {
+        Admin expected = Admin.builder()
+                .id(0)
+                .email("admin@mail.ru")
+                .password("ggs")
+                .build();
+
+        when(adminRepository.findByEmail(expected.getEmail())).thenReturn(new Admin());
+        adminService.findByEmail(expected.getEmail());
+        verify(adminRepository, times(1)).findByEmail(expected.getEmail());
+    }
 }

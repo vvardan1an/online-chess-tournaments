@@ -1,93 +1,103 @@
 package am.itspace.onlinechesstournamentcommon.service;
 
 import am.itspace.onlinechesstournamentcommon.entity.Player;
+import am.itspace.onlinechesstournamentcommon.mapper.PlayerMapper;
+import am.itspace.onlinechesstournamentcommon.repository.PlayerRepository;
 import am.itspace.onlinechesstournamentcommon.service.impl.PlayerServiceImpl;
 import am.itspace.onlinechesstournamentdatatransfer.model.Title;
 import am.itspace.onlinechesstournamentdatatransfer.request.PlayerRequest;
-import am.itspace.onlinechesstournamentdatatransfer.response.PlayerResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PlayerServiceTest {
 
+    @InjectMocks
+    private PlayerServiceImpl service;
     @Mock
-    PlayerServiceImpl playerService;
+    private PlayerRepository repository;
+    @Mock
+    private PlayerMapper mapper;
 
 
     @Test
-    void findByEmail() {
+    void findByEmailSuccess() {
 
-        Player player = Player.builder()
-                .id(1)
+        Player expected = Player.builder()
+                .id(0)
                 .name("John")
                 .surname("Smith")
                 .nationality("US")
-                .age(18)
-                .fideRating(15)
-                .nationalRating(20)
-                .title(Title.NM)
+                .age(20)
+                .fideRating(50)
+                .nationalRating(80)
+                .title(Title.CM)
                 .email("smith@mail.ru")
-                .password("123")
-                .tournamentList(new ArrayList<>())
+                .password("chess")
                 .build();
 
-        when(playerService.findByEmail(anyString()).equals(player.getEmail())).thenReturn(true);
-        verify(playerService, times(1)).findByEmail(anyString());
-        verifyNoMoreInteractions(playerService);
-
+        when(repository.findByEmail(expected.getEmail())).thenReturn(new Player());
+        service.findByEmail(expected.getEmail());
+        verify(repository, times(1)).findByEmail(expected.getEmail());
     }
 
     @Test
     void save() {
-        Player player = Player.builder()
-                .id(1)
+        Player expected = Player.builder()
+                .id(0)
                 .name("John")
                 .surname("Smith")
                 .nationality("US")
-                .age(18)
-                .fideRating(15)
-                .nationalRating(20)
-                .title(Title.NM)
+                .age(20)
+                .fideRating(50)
+                .nationalRating(80)
+                .title(Title.CM)
                 .email("smith@mail.ru")
-                .password("123")
+                .password("chess")
                 .build();
 
-        when(playerService.save(any())).thenReturn(player);
-        Player savePlayer = playerService.save(new PlayerRequest());
-        assertThat(savePlayer).isEqualTo(player);
-        verify(playerService, times(1)).save(any());
+        when(repository.save(any(Player.class))).thenReturn(expected);
+        when(mapper.toEntity(any(PlayerRequest.class))).thenReturn(expected);
 
+        Player actual = service.save(new PlayerRequest());
 
+        assertEquals(expected, actual);
+        verify(repository, times(1)).save(any(Player.class));
     }
 
     @Test
-    void deleteById() {
+    void deleteByIdSuccess() {
+        when(repository.findById(anyInt())).thenReturn(Optional.of(new Player()));
+        boolean actual = service.deleteById(1);
 
-        when(playerService.deleteById(anyInt())).thenReturn(true);
+        assertTrue(actual);
+    }
 
-        playerService.deleteById(anyInt());
-        verify(playerService, times(1)).deleteById(anyInt());
-        verifyNoMoreInteractions(playerService);
+    @Test
+    void deleteByIdFailed() {
+        when(repository.findById(anyInt())).thenReturn(Optional.empty());
+        boolean actual = service.deleteById(1);
 
+        assertFalse(actual);
     }
 
     @Test
     void findAll() {
 
-        when(playerService.findAll()).thenReturn(List.of(new PlayerResponse(), new PlayerResponse()));
+        when(repository.findAll()).thenReturn(List.of(new Player()));
 
-        playerService.findAll();
-        verify(playerService, times(1)).findAll();
-        verifyNoMoreInteractions(playerService);
+        service.findAll();
+        verify(repository, times(1)).findAll();
+        verifyNoMoreInteractions(repository);
+
     }
 }
