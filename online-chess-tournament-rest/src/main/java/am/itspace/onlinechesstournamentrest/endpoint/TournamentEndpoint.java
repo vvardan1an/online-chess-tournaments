@@ -1,8 +1,8 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
 import am.itspace.onlinechesstournamentcommon.auth.CurrentUser;
-import am.itspace.onlinechesstournamentdatatransfer.request.TournamentRequest;
-import am.itspace.onlinechesstournamentdatatransfer.request.UpdateTournamentRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.creationRequest.TournamentRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateTournamentRequest;
 import am.itspace.onlinechesstournamentrest.facade.TournamentFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

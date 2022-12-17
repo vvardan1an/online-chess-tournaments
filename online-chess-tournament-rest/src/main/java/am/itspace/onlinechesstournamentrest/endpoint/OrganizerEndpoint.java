@@ -1,6 +1,6 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
-import am.itspace.onlinechesstournamentdatatransfer.request.OrganizerRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest.OrganizerRequest;
 import am.itspace.onlinechesstournamentrest.facade.OrganizerFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

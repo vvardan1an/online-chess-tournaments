@@ -13,8 +13,8 @@ import am.itspace.onlinechesstournamentcommon.service.PlayerService;
 import am.itspace.onlinechesstournamentcommon.service.TournamentService;
 import am.itspace.onlinechesstournamentcommon.util.BindingResultUtil;
 import am.itspace.onlinechesstournamentdatatransfer.model.TournamentSystem;
-import am.itspace.onlinechesstournamentdatatransfer.request.TournamentRequest;
-import am.itspace.onlinechesstournamentdatatransfer.request.UpdateTournamentRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.creationRequest.TournamentRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateTournamentRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.TournamentResponse;
 import am.itspace.onlinechesstournamentrest.facade.TournamentFacade;
 import lombok.AllArgsConstructor;
@@ -58,7 +58,7 @@ public class TournamentFacadeImpl implements TournamentFacade {
     }
 
     @Override
-    public ResponseEntity<?> update(UpdateTournamentRequest updateRequest, int id,
+    public ResponseEntity<?> update(UpdateTournamentRequest request, int id,
                                     CurrentUser currentUser, BindingResult br) {
         tournamentAvailabilityCheck(id);
         Tournament tournamentById = tournamentService.findById(id);
@@ -70,38 +70,41 @@ public class TournamentFacadeImpl implements TournamentFacade {
             if (br.hasErrors()) {
                 return ResponseEntity.unprocessableEntity().body(BindingResultUtil.extract(br));
             }
-
-            Tournament updatedTournament = Tournament.builder()
-                    .id(id)
-                    .organizer(currentOrganizer)
-                    .name(updateRequest.getName() == null ? tournamentById.getName() : updateRequest.getName())
-                    .tournamentSystem(TournamentSystem.valueOf(updateRequest.getTournamentSystem() == null ?
-                            String.valueOf(tournamentById.getTournamentSystem()) : String.valueOf(updateRequest.getTournamentSystem())))
-                    .isRated(updateRequest.getIsRated() == null ? tournamentById.isRated() : updateRequest.getIsRated())
-                    .isTitled(updateRequest.getIsTitled() == null ? tournamentById.isTitled() : updateRequest.getIsTitled())
-                    .startDate(tournamentById.getStartDate())
-                    .endDate(tournamentById.getEndDate())
-                    .participationEntryDeadline(tournamentById.getParticipationEntryDeadline())
-                    .minAgeRestriction(Integer.parseInt(updateRequest.getMinAgeRestriction() == null ?
-                            String.valueOf(tournamentById.getMinAgeRestriction()) : String.valueOf(updateRequest.getMinAgeRestriction())))
-                    .maxAgeRestriction(Integer.parseInt(updateRequest.getMaxAgeRestriction() == null ?
-                            String.valueOf(tournamentById.getMinAgeRestriction()) : String.valueOf(updateRequest.getMinAgeRestriction())))
-                    .minRatingRestriction(Integer.parseInt(updateRequest.getMinRatingRestriction() == null ?
-                            String.valueOf(tournamentById.getMinRatingRestriction()) : String.valueOf(updateRequest.getMinRatingRestriction())))
-                    .maxRatingRestriction(Integer.parseInt(updateRequest.getMaxRatingRestriction() == null ?
-                            String.valueOf(tournamentById.getMaxRatingRestriction()) : String.valueOf(updateRequest.getMaxRatingRestriction())))
-                    .description(updateRequest.getDescription() == null ? tournamentById.getDescription() : updateRequest.getDescription())
-                    .roundCount(updateRequest.getRoundCount() == null ? tournamentById.getRoundCount() : updateRequest.getRoundCount())
-                    .timeControl(updateRequest.getTimeControl() == null ? tournamentById.getTimeControl() : updateRequest.getTimeControl())
-                    .type(updateRequest.getType() == null ? tournamentById.getType() : updateRequest.getType())
-                    .build();
-
-            Tournament savedTournament = tournamentService.save(updatedTournament);
-            return ResponseEntity.ok().body(tournamentMapper.toResponse(savedTournament));
+            Tournament updatedTournament = updateTournament(tournamentById, request, id, currentOrganizer);
+            return ResponseEntity.ok().body(tournamentMapper.toResponse(updatedTournament));
         }
-        log.error("");
+        log.error("organizer id " + organizerIdOfTournament +
+                " of tournament " + tournamentById +
+                " does not match with current organizers' id: " + currentOrganizer.getId());
         throw new AccessDeniedException("update process failed:" +
                 " current organizer does not have access to tournament by id " + id);
+    }
+
+    private Tournament updateTournament(Tournament tournamentById, UpdateTournamentRequest request, int id, Organizer currentOrganizer) {
+        return tournamentService.save(Tournament.builder()
+                .id(id)
+                .organizer(currentOrganizer)
+                .name(request.getName() == null ? tournamentById.getName() : request.getName())
+                .tournamentSystem(TournamentSystem.valueOf(request.getTournamentSystem() == null ?
+                        String.valueOf(tournamentById.getTournamentSystem()) : String.valueOf(request.getTournamentSystem())))
+                .isRated(request.getIsRated() == null ? tournamentById.isRated() : request.getIsRated())
+                .isTitled(request.getIsTitled() == null ? tournamentById.isTitled() : request.getIsTitled())
+                .startDate(tournamentById.getStartDate())
+                .endDate(tournamentById.getEndDate())
+                .participationEntryDeadline(tournamentById.getParticipationEntryDeadline())
+                .minAgeRestriction(Integer.parseInt(request.getMinAgeRestriction() == null ?
+                        String.valueOf(tournamentById.getMinAgeRestriction()) : String.valueOf(request.getMinAgeRestriction())))
+                .maxAgeRestriction(Integer.parseInt(request.getMaxAgeRestriction() == null ?
+                        String.valueOf(tournamentById.getMinAgeRestriction()) : String.valueOf(request.getMinAgeRestriction())))
+                .minRatingRestriction(Integer.parseInt(request.getMinRatingRestriction() == null ?
+                        String.valueOf(tournamentById.getMinRatingRestriction()) : String.valueOf(request.getMinRatingRestriction())))
+                .maxRatingRestriction(Integer.parseInt(request.getMaxRatingRestriction() == null ?
+                        String.valueOf(tournamentById.getMaxRatingRestriction()) : String.valueOf(request.getMaxRatingRestriction())))
+                .description(request.getDescription() == null ? tournamentById.getDescription() : request.getDescription())
+                .roundCount(request.getRoundCount() == null ? tournamentById.getRoundCount() : request.getRoundCount())
+                .timeControl(request.getTimeControl() == null ? tournamentById.getTimeControl() : request.getTimeControl())
+                .type(request.getType() == null ? tournamentById.getType() : request.getType())
+                .build());
     }
 
     @Override
@@ -145,7 +148,7 @@ public class TournamentFacadeImpl implements TournamentFacade {
         Player player = playerService.findByEmail(currentUser.getUsername());
         List<Player> playerList = tournament.getPlayerList();
 
-        log.info("checking current player presence in playerList");
+        log.info("checking current player " + currentUser.getUsername() + " presence in playerList");
         if (playerList.contains(player)) {
             log.error("participation request denied for " + currentUser.getUsername() +
                     " as current player is already signed up for this tournament");

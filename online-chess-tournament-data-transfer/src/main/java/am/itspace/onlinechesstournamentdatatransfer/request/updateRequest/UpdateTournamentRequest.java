@@ -1,4 +1,4 @@
-package am.itspace.onlinechesstournamentdatatransfer.request;
+package am.itspace.onlinechesstournamentdatatransfer.request.updateRequest;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.TournamentSystem;
 import lombok.AllArgsConstructor;
@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Size;
 
 /**
- * public class UpdateTournamentRequest;
- * Request DTO
- * used for updating tournaments;
+ * DTO used for tournament update request;
  */
 
 @Data

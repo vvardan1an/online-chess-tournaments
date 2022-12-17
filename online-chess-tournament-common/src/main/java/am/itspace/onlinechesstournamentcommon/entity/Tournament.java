@@ -1,7 +1,6 @@
 package am.itspace.onlinechesstournamentcommon.entity;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.TournamentSystem;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;

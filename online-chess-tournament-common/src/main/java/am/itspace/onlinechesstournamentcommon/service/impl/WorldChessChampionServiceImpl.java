@@ -2,10 +2,9 @@ package am.itspace.onlinechesstournamentcommon.service.impl;
 
 import am.itspace.onlinechesstournamentcommon.entity.WorldChessChampion;
 import am.itspace.onlinechesstournamentcommon.exception.WorldChessChampionNotFoundException;
-import am.itspace.onlinechesstournamentcommon.mapper.WorldChessChampionMapper;
 import am.itspace.onlinechesstournamentcommon.repository.WorldChessChampionRepository;
 import am.itspace.onlinechesstournamentcommon.service.WorldChessChampionService;
-import am.itspace.onlinechesstournamentdatatransfer.request.UpdateWccRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateWccRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -21,32 +20,30 @@ public class WorldChessChampionServiceImpl implements WorldChessChampionService 
 
     private final WorldChessChampionRepository wccRepository;
 
-    private final WorldChessChampionMapper wccMapper;
-
     @Override
     public void deleteById(int id) {
         wccRepository.deleteById(id);
     }
 
     @Override
-    public WorldChessChampion update(UpdateWccRequest updateWccRequest, int id) {
+    public WorldChessChampion update(UpdateWccRequest request, int id) {
         WorldChessChampion wccById = getById(id);
         return save(WorldChessChampion.builder()
                 .id(id)
-                .name(updateWccRequest.getName() == null ? wccById.getName() : updateWccRequest.getName())
-                .surname(updateWccRequest.getSurname() == null ? wccById.getSurname() : updateWccRequest.getSurname())
-                .birthDate(updateWccRequest.getBirthDate() == null ? wccById.getBirthDate() : updateWccRequest.getBirthDate())
-                .died(updateWccRequest.getDied() == null ? wccById.getDied() : updateWccRequest.getDied())
-                .cityCountry(updateWccRequest.getCityCountry() == null ? wccById.getCityCountry() : updateWccRequest.getCityCountry())
-                .federation(updateWccRequest.getFederation() == null ? wccById.getFederation() : updateWccRequest.getFederation())
-                .rating(updateWccRequest.getRating() == null ? wccById.getRating() : updateWccRequest.getRating())
-                .peakRating(updateWccRequest.getPeakRating() == null ? wccById.getPeakRating() : updateWccRequest.getPeakRating())
-                .worldChampionNumber(updateWccRequest.getWorldChampionNumber() == null ? wccById.getWorldChampionNumber() : updateWccRequest.getWorldChampionNumber())
-                .quote(updateWccRequest.getQuote() == null ? wccById.getQuote() : updateWccRequest.getQuote())
-                .info(updateWccRequest.getInfo() == null ? wccById.getInfo() : updateWccRequest.getInfo())
-                .blitzRating(updateWccRequest.getBlitzRating() == null ? wccById.getBlitzRating() : updateWccRequest.getBlitzRating())
-                .rapidRating(updateWccRequest.getRapidRating() == null ? wccById.getRapidRating() : updateWccRequest.getRapidRating())
-                .title(updateWccRequest.getTitle() == null ? wccById.getTitle() : updateWccRequest.getTitle())
+                .name(request.getName() == null ? wccById.getName() : request.getName())
+                .surname(request.getSurname() == null ? wccById.getSurname() : request.getSurname())
+                .birthDate(request.getBirthDate() == null ? wccById.getBirthDate() : request.getBirthDate())
+                .died(request.getDied() == null ? wccById.getDied() : request.getDied())
+                .cityCountry(request.getCityCountry() == null ? wccById.getCityCountry() : request.getCityCountry())
+                .federation(request.getFederation() == null ? wccById.getFederation() : request.getFederation())
+                .rating(request.getRating() == null ? wccById.getRating() : request.getRating())
+                .peakRating(request.getPeakRating() == null ? wccById.getPeakRating() : request.getPeakRating())
+                .worldChampionNumber(request.getWorldChampionNumber() == null ? wccById.getWorldChampionNumber() : request.getWorldChampionNumber())
+                .quote(request.getQuote() == null ? wccById.getQuote() : request.getQuote())
+                .info(request.getInfo() == null ? wccById.getInfo() : request.getInfo())
+                .blitzRating(request.getBlitzRating() == null ? wccById.getBlitzRating() : request.getBlitzRating())
+                .rapidRating(request.getRapidRating() == null ? wccById.getRapidRating() : request.getRapidRating())
+                .title(request.getTitle() == null ? wccById.getTitle() : request.getTitle())
                 .build());
     }
 
@@ -70,7 +67,6 @@ public class WorldChessChampionServiceImpl implements WorldChessChampionService 
 
     @Override
     public WorldChessChampion save(WorldChessChampion wcc) {
-        log.info("saving 'WorldChessChampion'...");
         return wccRepository.save(wcc);
     }
 

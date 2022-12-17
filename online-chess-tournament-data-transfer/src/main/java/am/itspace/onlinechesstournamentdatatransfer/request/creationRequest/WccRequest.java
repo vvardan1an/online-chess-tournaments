@@ -1,4 +1,4 @@
-package am.itspace.onlinechesstournamentdatatransfer.request;
+package am.itspace.onlinechesstournamentdatatransfer.request.creationRequest;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -17,9 +17,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**
- * public class WccRequest;
- * request DTO
- * used for WorldChessChampion creation;
+ * DTO used for WorldChessChampion creation request;
  */
 
 @Data

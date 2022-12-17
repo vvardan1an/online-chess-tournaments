@@ -4,7 +4,7 @@ import am.itspace.onlinechesstournamentcommon.entity.Player;
 import am.itspace.onlinechesstournamentcommon.mapper.PlayerMapper;
 import am.itspace.onlinechesstournamentcommon.repository.PlayerRepository;
 import am.itspace.onlinechesstournamentcommon.service.PlayerService;
-import am.itspace.onlinechesstournamentdatatransfer.request.PlayerRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest.PlayerRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.PlayerResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
