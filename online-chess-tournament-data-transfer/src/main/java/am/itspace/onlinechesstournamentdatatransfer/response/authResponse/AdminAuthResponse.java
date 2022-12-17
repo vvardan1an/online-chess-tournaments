@@ -1,14 +1,14 @@
-package am.itspace.onlinechesstournamentdatatransfer.response;
+package am.itspace.onlinechesstournamentdatatransfer.response.authResponse;
 
+import am.itspace.onlinechesstournamentdatatransfer.response.AdminResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * public class AdminAuthResponse;
- * response DTO;
- * used for returning successfully logged in admin with generated token;
+ * response DTO, used for returning successfully
+ * logged in admin with generated token;
  */
 
 @Data

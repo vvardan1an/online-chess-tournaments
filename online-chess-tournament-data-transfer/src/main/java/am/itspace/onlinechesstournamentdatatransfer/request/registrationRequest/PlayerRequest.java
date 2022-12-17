@@ -1,4 +1,4 @@
-package am.itspace.onlinechesstournamentdatatransfer.request;
+package am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.Title;
 import lombok.AllArgsConstructor;
@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.*;
 
 /**
- * public class PlayerRequest;
- * Request DTO
- * used for Player registration;
+ * DTO used for Player registration request;
  */
 
 @Data

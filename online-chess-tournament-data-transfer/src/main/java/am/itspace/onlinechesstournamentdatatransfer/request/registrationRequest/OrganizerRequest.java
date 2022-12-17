@@ -1,4 +1,4 @@
-package am.itspace.onlinechesstournamentdatatransfer.request;
+package am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,9 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
 /**
- * public class OrganizerRequest;
- * Request DTO
- * used for Organizer registration;
+ * DTO used for Organizer registration request;
  */
 
 @Data

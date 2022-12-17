@@ -1,13 +1,11 @@
-package am.itspace.onlinechesstournamentdatatransfer.request;
+package am.itspace.onlinechesstournamentdatatransfer.request.loginRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * public class LoginRequest;
- * DTO,
- * used for login requests;
+ * DTO, used for login requests;
  */
 
 @Data

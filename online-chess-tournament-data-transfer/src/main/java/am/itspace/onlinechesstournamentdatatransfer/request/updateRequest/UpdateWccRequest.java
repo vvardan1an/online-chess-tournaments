@@ -1,4 +1,4 @@
-package am.itspace.onlinechesstournamentdatatransfer.request;
+package am.itspace.onlinechesstournamentdatatransfer.request.updateRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +9,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 /**
- * public class UpdateWccRequest;
- * Request DTO
- * used for updating worldChessChampion;
+ * DTO used for WorldChessChampion update request;
  */
 
 @Data

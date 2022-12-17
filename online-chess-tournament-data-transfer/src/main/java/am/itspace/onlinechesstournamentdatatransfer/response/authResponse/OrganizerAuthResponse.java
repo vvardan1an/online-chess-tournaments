@@ -1,14 +1,14 @@
-package am.itspace.onlinechesstournamentdatatransfer.response;
+package am.itspace.onlinechesstournamentdatatransfer.response.authResponse;
 
+import am.itspace.onlinechesstournamentdatatransfer.response.OrganizerResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * public class OrganizerAuthResponse;
- * response DTO
- * used for returning successfully logged in Organizer with generated token;
+ * response DTO used for returning successfully
+ * logged in Organizer with generated token;
  */
 
 @Data

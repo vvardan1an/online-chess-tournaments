@@ -1,10 +1,9 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
-import am.itspace.onlinechesstournamentcommon.entity.WorldChessChampion;
 import am.itspace.onlinechesstournamentcommon.mapper.WorldChessChampionMapper;
 import am.itspace.onlinechesstournamentcommon.service.WorldChessChampionService;
-import am.itspace.onlinechesstournamentdatatransfer.request.UpdateWccRequest;
-import am.itspace.onlinechesstournamentdatatransfer.request.WccRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateWccRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.creationRequest.WccRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.WccResponse;
 import am.itspace.onlinechesstournamentrest.facade.AdminAccessOnly;
 import lombok.RequiredArgsConstructor;
@@ -36,13 +35,12 @@ public class WorldChessChampionEndpoint {
     @GetMapping
     public ResponseEntity<List<WccResponse>> getAll(@PageableDefault(sort = "worldChampionNumber",
             direction = Sort.Direction.ASC) Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(wccMapper.toResponseList(wccService.findAll(pageable)));
+        return ResponseEntity.ok().body(wccMapper.toResponseList(wccService.findAll(pageable)));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<WccResponse> getById(@PathVariable("id") int id) {
-        WorldChessChampion byId = wccService.getById(id);
-        return ResponseEntity.status(HttpStatus.FOUND).body(wccMapper.toResponse(byId));
+        return ResponseEntity.status(HttpStatus.FOUND).body(wccMapper.toResponse(wccService.getById(id)));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

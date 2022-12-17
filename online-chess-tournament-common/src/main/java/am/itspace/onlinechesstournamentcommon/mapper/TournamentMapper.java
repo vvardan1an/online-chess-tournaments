@@ -1,8 +1,8 @@
 package am.itspace.onlinechesstournamentcommon.mapper;
 
 import am.itspace.onlinechesstournamentcommon.entity.Tournament;
-import am.itspace.onlinechesstournamentdatatransfer.request.TournamentRequest;
-import am.itspace.onlinechesstournamentdatatransfer.request.UpdateTournamentRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.creationRequest.TournamentRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateTournamentRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.TournamentResponse;
 import org.mapstruct.Mapper;
 

@@ -4,7 +4,7 @@ import am.itspace.onlinechesstournamentcommon.mapper.OrganizerMapper;
 import am.itspace.onlinechesstournamentcommon.service.OrganizerService;
 import am.itspace.onlinechesstournamentcommon.util.AuthUtil;
 import am.itspace.onlinechesstournamentcommon.util.BindingResultUtil;
-import am.itspace.onlinechesstournamentdatatransfer.request.OrganizerRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest.OrganizerRequest;
 import am.itspace.onlinechesstournamentrest.facade.OrganizerFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

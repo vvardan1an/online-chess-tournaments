@@ -1,7 +1,7 @@
 package am.itspace.onlinechesstournamentrest.endpoint;
 
 import am.itspace.onlinechesstournamentcommon.auth.CurrentUser;
-import am.itspace.onlinechesstournamentdatatransfer.request.LoginRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.loginRequest.LoginRequest;
 import am.itspace.onlinechesstournamentrest.facade.LoginLogoutFacade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

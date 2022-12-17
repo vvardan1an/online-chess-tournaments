@@ -1,4 +1,4 @@
-package am.itspace.onlinechesstournamentdatatransfer.request;
+package am.itspace.onlinechesstournamentdatatransfer.request.creationRequest;
 
 import am.itspace.onlinechesstournamentdatatransfer.model.TournamentSystem;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,9 +17,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 /**
- * public class TournamentRequest;
- * Request DTO
- * used for tournament creation;
+ * DTO used for tournament creation request;
  */
 
 @Data
