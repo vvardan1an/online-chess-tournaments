@@ -2,6 +2,7 @@ package am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest
 
 import am.itspace.onlinechesstournamentdatatransfer.model.Title;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import javax.validation.constraints.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class PlayerRequest {
 
     @Size(min = 2)
