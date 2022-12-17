@@ -18,7 +18,6 @@ import java.util.List;
 public class OrganizerServiceImpl implements OrganizerService {
 
     private final OrganizerRepository organizerRepository;
-
     private final OrganizerMapper organizerMapper;
 
     public Organizer findByEmail(String email) {

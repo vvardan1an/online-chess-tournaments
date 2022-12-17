@@ -1,7 +1,7 @@
 package am.itspace.onlinechesstournamentrest.facade;
 
-import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateWccRequest;
 import am.itspace.onlinechesstournamentdatatransfer.request.creationRequest.WccRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateWccRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;

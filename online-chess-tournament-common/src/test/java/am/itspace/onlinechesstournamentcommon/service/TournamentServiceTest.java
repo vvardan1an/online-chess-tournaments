@@ -1,10 +1,8 @@
 package am.itspace.onlinechesstournamentcommon.service;
 
 import am.itspace.onlinechesstournamentcommon.entity.Tournament;
-import am.itspace.onlinechesstournamentcommon.mapper.TournamentMapper;
 import am.itspace.onlinechesstournamentcommon.repository.TournamentRepository;
 import am.itspace.onlinechesstournamentcommon.service.impl.TournamentServiceImpl;
-import am.itspace.onlinechesstournamentdatatransfer.request.TournamentRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,8 +12,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,22 +24,6 @@ class TournamentServiceTest {
 
     @Mock
     TournamentRepository tournamentRepository;
-
-    @Mock
-    TournamentMapper tournamentMapper;
-
-    @Test
-    void save() {
-        Tournament tournament = new Tournament();
-
-        when(tournamentRepository.save(any(Tournament.class))).thenReturn(tournament);
-        when(tournamentMapper.toEntity(any(TournamentRequest.class))).thenReturn(tournament);
-
-        Tournament actual = tournamentService.save(new Tournament());
-
-        assertEquals(tournament, actual);
-        verify(tournamentRepository, times(1)).save(any(Tournament.class));
-    }
 
     @Test
     void isPresentSuccess() {

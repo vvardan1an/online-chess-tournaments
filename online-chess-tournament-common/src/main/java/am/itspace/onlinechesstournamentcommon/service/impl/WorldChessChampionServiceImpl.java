@@ -47,7 +47,6 @@ public class WorldChessChampionServiceImpl implements WorldChessChampionService 
                 .build());
     }
 
-
     @Override
     public List<WorldChessChampion> findAll(Pageable pageable) {
         log.info("request for list of 'WorldChessChampion' sorted by {}", pageable.getSort());

@@ -5,7 +5,7 @@ import am.itspace.onlinechesstournamentcommon.mapper.PlayerMapper;
 import am.itspace.onlinechesstournamentcommon.repository.PlayerRepository;
 import am.itspace.onlinechesstournamentcommon.service.impl.PlayerServiceImpl;
 import am.itspace.onlinechesstournamentdatatransfer.model.Title;
-import am.itspace.onlinechesstournamentdatatransfer.request.PlayerRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest.PlayerRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,9 +13,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,7 +26,6 @@ class PlayerServiceTest {
     private PlayerRepository repository;
     @Mock
     private PlayerMapper mapper;
-
 
     @Test
     void findByEmailSuccess() {
@@ -72,22 +70,6 @@ class PlayerServiceTest {
 
         assertEquals(expected, actual);
         verify(repository, times(1)).save(any(Player.class));
-    }
-
-    @Test
-    void deleteByIdSuccess() {
-        when(repository.findById(anyInt())).thenReturn(Optional.of(new Player()));
-        boolean actual = service.deleteById(1);
-
-        assertTrue(actual);
-    }
-
-    @Test
-    void deleteByIdFailed() {
-        when(repository.findById(anyInt())).thenReturn(Optional.empty());
-        boolean actual = service.deleteById(1);
-
-        assertFalse(actual);
     }
 
     @Test

@@ -2,8 +2,8 @@ package am.itspace.onlinechesstournamentrest.endpoint;
 
 import am.itspace.onlinechesstournamentcommon.mapper.WorldChessChampionMapper;
 import am.itspace.onlinechesstournamentcommon.service.WorldChessChampionService;
-import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateWccRequest;
 import am.itspace.onlinechesstournamentdatatransfer.request.creationRequest.WccRequest;
+import am.itspace.onlinechesstournamentdatatransfer.request.updateRequest.UpdateWccRequest;
 import am.itspace.onlinechesstournamentdatatransfer.response.WccResponse;
 import am.itspace.onlinechesstournamentrest.facade.AdminAccessOnly;
 import lombok.RequiredArgsConstructor;

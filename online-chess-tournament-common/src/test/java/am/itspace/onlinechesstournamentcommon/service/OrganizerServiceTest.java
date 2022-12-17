@@ -4,6 +4,7 @@ import am.itspace.onlinechesstournamentcommon.entity.Organizer;
 import am.itspace.onlinechesstournamentcommon.mapper.OrganizerMapper;
 import am.itspace.onlinechesstournamentcommon.repository.OrganizerRepository;
 import am.itspace.onlinechesstournamentcommon.service.impl.OrganizerServiceImpl;
+import am.itspace.onlinechesstournamentdatatransfer.request.registrationRequest.OrganizerRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,11 +12,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -66,22 +65,6 @@ class OrganizerServiceTest {
 
         assertEquals(expected, actual);
         verify(organizerRepository, times(1)).save(any(Organizer.class));
-    }
-
-    @Test
-    void deleteByIdSuccess() {
-        when(organizerRepository.findById(anyInt())).thenReturn(Optional.of(new Organizer()));
-        boolean actual = organizerService.deleteById(1);
-
-        assertTrue(actual);
-    }
-
-    @Test
-    void deleteByIdFailed() {
-        when(organizerRepository.findById(anyInt())).thenReturn(Optional.empty());
-        boolean actual = organizerService.deleteById(1);
-
-        assertFalse(actual);
     }
 
     @Test
